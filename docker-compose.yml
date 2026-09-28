@@ -1,0 +1,7 @@
+services:
+  moysklad-clients:
+    build: .
+    container_name: moysklad_clients
+    ports:
+      - "3000:3000"
+    restart: always
