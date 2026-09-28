@@ -12,6 +12,8 @@ const PIPELINE_ID = process.env.AMO_PIPELINE_ID;
 const STATUS_ID = process.env.AMO_STATUS_ID;
 const RESPONSIBLE_ID = process.env.AMO_RESPONSIBLE_USER_ID;
 const LEAD_TAG = process.env.AMO_LEAD_TAG || "Сайт MoySkladShop";
+// Название сделки одинаковое для всех заявок — так их видно в воронке одним взглядом.
+const LEAD_NAME = process.env.AMO_LEAD_NAME || "Заявка из сайта на мини апп приложение";
 
 /* ------------------------- простая защита от спама ------------------------- */
 // Память процесса: одного узла для лендинга достаточно. Нужен кластер —
@@ -97,10 +99,8 @@ export async function POST(request) {
     return Response.json({ ok: false, error: "crm_not_configured" }, { status: 503 });
   }
 
-  const leadName = company ? `Заявка с сайта — ${company}` : `Заявка с сайта — ${name}`;
-
   const lead = {
-    name: leadName,
+    name: LEAD_NAME,
     _embedded: {
       tags: [{ name: LEAD_TAG }],
       contacts: [
