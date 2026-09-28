@@ -80,6 +80,10 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
+          <a className="mm-phone" href={`tel:${PHONE_RAW}`} onClick={() => setOpen(false)}>
+            <PhoneIcon />
+            {PHONE_HUMAN}
+          </a>
           <a className="btn btn-primary" href="#lead" onClick={() => setOpen(false)}>
             {t.nav.cta}
           </a>
