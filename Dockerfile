@@ -1,16 +1,17 @@
-FROM node:20-alpine
+# 1. Node.js 24-alpine bazaviy imidjidan foydalanamiz
+FROM node:24-alpine
 
+# 2. Konteyner ichidagi asosiy ishchi katalogni belgilaymiz
 WORKDIR /app
 
-# 'serve' paketini global o'rnatamiz
+# 3. Statik fayllarni tarqatish uchun 'serve' paketini global o'rnatamiz
 RUN npm install -g serve
 
-# Loyiha fayllarini konteynerga nusxalash
+# 4. Loyiha fayllarini konteynerga nusxalaymiz
+# Eslatma: Ushbu loyihada build (yig'ish) jarayoni talab etilmaydi (tayyor HTML/statik fayllar).
+# Agar kelgusida loyihaga build bosqichi qo'shilsa, faqat 2 ta stage (builder va runner) ishlatiladi.
 COPY . .
 
-# Port sozlamasi (standart: 3000)
-ENV PORT=3000
-EXPOSE 3000
-
-# Loyihani serve orqali ishga tushirish (-s: SPA rejimi, -l: port)
-CMD ["sh", "-c", "serve -s . -l ${PORT}"]
+# 5. Loyihani serve orqali 3000-portda ishga tushiramiz
+# Eslatma: Talabga muvofiq USER, EXPOSE va boshqa ortiqcha qo'shimchalar ishlatilmadi
+CMD ["serve", "-s", ".", "-l", "3000"]
