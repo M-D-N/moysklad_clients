@@ -4,3 +4,12 @@
 node_modules
 npm-debug.log
 README.md
+
+# yig'ilgan fayllar — imij ichida qaytadan yig'iladi
+.next
+out
+
+# MAXFIY KALITLAR imijga tushmasligi kerak
+.env
+.env.local
+.env*.local

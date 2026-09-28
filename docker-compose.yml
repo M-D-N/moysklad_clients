@@ -5,3 +5,12 @@ services:
     ports:
       - "3000:3000"
     restart: always
+    # amoCRM kalitlari host muhitidan olinadi (yoki serverdagi .env fayldan).
+    # Ko'rsatilmasa — sayt ishlaydi, lekin ariza formasi 503 qaytaradi.
+    environment:
+      AMO_BASE_URL: ${AMO_BASE_URL:-}
+      AMO_ACCESS_TOKEN: ${AMO_ACCESS_TOKEN:-}
+      AMO_PIPELINE_ID: ${AMO_PIPELINE_ID:-}
+      AMO_STATUS_ID: ${AMO_STATUS_ID:-}
+      AMO_RESPONSIBLE_USER_ID: ${AMO_RESPONSIBLE_USER_ID:-}
+      AMO_LEAD_TAG: ${AMO_LEAD_TAG:-}

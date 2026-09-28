@@ -1,17 +1,33 @@
-# 1. Node.js 24-alpine bazaviy imidjidan foydalanamiz
-FROM node:24-alpine
+# Loyiha endi Next.js'da — shuning uchun ikki bosqich: builder va runner.
+# (Avvalgi izohda aytilganidek: build bosqichi paydo bo'lsa, 2 stage ishlatiladi.)
 
-# 2. Konteyner ichidagi asosiy ishchi katalogni belgilaymiz
+# ---------- 1-bosqich: yig'ish ----------
+FROM node:24-alpine AS builder
 WORKDIR /app
 
-# 3. Statik fayllarni tarqatish uchun 'serve' paketini global o'rnatamiz
-RUN npm install -g serve
+# Avval faqat manifestlar — qatlam keshi buzilmasin
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# 4. Loyiha fayllarini konteynerga nusxalaymiz
-# Eslatma: Ushbu loyihada build (yig'ish) jarayoni talab etilmaydi (tayyor HTML/statik fayllar).
-# Agar kelgusida loyihaga build bosqichi qo'shilsa, faqat 2 ta stage (builder va runner) ishlatiladi.
 COPY . .
 
-# 5. Loyihani serve orqali 3000-portda ishga tushiramiz
-# Eslatma: Talabga muvofiq USER, EXPOSE va boshqa ortiqcha qo'shimchalar ishlatilmadi
-CMD ["serve", "-s", ".", "-l", "3000"]
+# next.config.mjs'dagi output: "standalone" tufayli
+# .next/standalone ichida minimal server yig'iladi
+RUN npm run build
+
+# ---------- 2-bosqich: ishga tushirish ----------
+FROM node:24-alpine AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+
+# standalone server + statik fayllar
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
