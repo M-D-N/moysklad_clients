@@ -1,0 +1,15 @@
+# зависимости
+/node_modules
+
+# сборка Next.js
+/.next
+/out
+
+# ЛОКАЛЬНЫЕ СЕКРЕТЫ — в git не попадают никогда
+.env
+.env.local
+.env*.local
+
+# прочее
+.DS_Store
+*.log
