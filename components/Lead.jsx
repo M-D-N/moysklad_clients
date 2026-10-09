@@ -52,7 +52,7 @@ export function Footer() {
     <footer className="shell">
       <div className="fl">
         <Logo color="#E6EFEC" />
-        <p>iCORP MoySkladShop</p>
+        <p>Teledukon</p>
       </div>
       <p>{t.footer}</p>
     </footer>

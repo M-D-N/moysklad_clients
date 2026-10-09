@@ -23,8 +23,8 @@ export default function Nav() {
       <div className="shell nav-in">
         <a className="brand" href="#top" onClick={() => setOpen(false)}>
           <Logo />
-          <b>iCORP</b>
-          <span>MoySkladShop</span>
+          <b>Teledukon</b>
+          <span>{t.brandBy}</span>
         </a>
 
         <div className="nav-links">

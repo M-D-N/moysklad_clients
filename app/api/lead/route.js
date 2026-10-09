@@ -11,7 +11,7 @@ const AMO_TOKEN = process.env.AMO_ACCESS_TOKEN || "";
 const PIPELINE_ID = process.env.AMO_PIPELINE_ID;
 const STATUS_ID = process.env.AMO_STATUS_ID;
 const RESPONSIBLE_ID = process.env.AMO_RESPONSIBLE_USER_ID;
-const LEAD_TAG = process.env.AMO_LEAD_TAG || "Сайт MoySkladShop";
+const LEAD_TAG = process.env.AMO_LEAD_TAG || "Сайт Teledukon";
 // Название сделки одинаковое для всех заявок — так их видно в воронке одним взглядом.
 const LEAD_NAME = process.env.AMO_LEAD_NAME || "Заявка из сайта на мини апп приложение";
 

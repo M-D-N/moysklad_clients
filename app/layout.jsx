@@ -1,32 +1,35 @@
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
 
-const TITLE = "Интернет-магазин в Telegram поверх вашей учётной системы — iCORP";
+const TITLE = "Teledukon — интернет-магазин в Telegram поверх вашей учётной системы";
 const DESC =
   "Витрина интернет-магазина в Telegram поверх вашей учётной системы: покупатель заказывает " +
   "в Telegram, товары, цены и остатки остаются в вашей программе. Готовая интеграция — МойСклад, " +
   "другие системы рассматриваем индивидуально.";
 
 export const metadata = {
-  metadataBase: new URL("https://icorp.uz"),
+  metadataBase: new URL("https://teledukon.uz"),
   title: TITLE,
   description: DESC,
   keywords: [
     "интернет-магазин",
     "магазин в Telegram",
+    "Teledukon",
     "Telegram Mini App",
     "МойСклад",
     "магазин для бизнеса",
     "онлайн-заказы",
     "Узбекистан",
   ],
+  alternates: { canonical: "/" },
   icons: {
     icon: "/brand/icorp-mark-dark.svg",
     apple: "/brand/icorp-appicon.png",
   },
   openGraph: {
     type: "website",
-    siteName: "iCORP",
+    url: "/",
+    siteName: "Teledukon",
     title: TITLE,
     description: DESC,
     locale: "ru_RU",
