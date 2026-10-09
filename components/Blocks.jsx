@@ -25,7 +25,7 @@ export function HowItWorks() {
   return (
     <section className="band" id="how">
       <div className="shell">
-        <SectionHead num="01" title={t.s1.h} lead={t.s1.l} />
+        <SectionHead num="02" title={t.s1.h} lead={t.s1.l} />
 
         <div className="flow">
           {t.flow.map((n, i) => (
@@ -69,7 +69,7 @@ export function Features() {
   return (
     <section className="band" id="features">
       <div className="shell">
-        <SectionHead num="04" title={t.s4.h} lead={t.s4.l} />
+        <SectionHead num="05" title={t.s4.h} lead={t.s4.l} />
         <div className="feat-grid">
           {t.features.map((c) => (
             <div className="fcard" key={c.h}>
@@ -97,7 +97,7 @@ export function Ledger() {
   return (
     <section className="band" id="inside">
       <div className="shell">
-        <SectionHead num="05" title={t.s5.h} lead={t.s5.l} />
+        <SectionHead num="06" title={t.s5.h} lead={t.s5.l} />
         <div className="ledger">
           {t.ledger.map((r) => (
             <div className={`lrow ${r.tone}`} key={r.k}>
@@ -116,7 +116,7 @@ export function Cases() {
   return (
     <section className="band" id="cases">
       <div className="shell">
-        <SectionHead num="06" title={t.s6.h} lead={t.s6.l} />
+        <SectionHead num="07" title={t.s6.h} lead={t.s6.l} />
         <div className="cases">
           {t.cases.map((c) => (
             <div className="case" key={c.h}>
@@ -136,7 +136,7 @@ export function Reliability() {
   return (
     <section className="band">
       <div className="shell">
-        <SectionHead num="07" title={t.s7.h} lead={t.s7.l} />
+        <SectionHead num="08" title={t.s7.h} lead={t.s7.l} />
         <div className="rel">
           {t.rel.map((r) => (
             <div className="rcard" key={r.h}>
@@ -158,7 +158,7 @@ export function Plans() {
   return (
     <section className="band" id="plans">
       <div className="shell">
-        <SectionHead num="08" title={t.s8.h} lead={t.s8.l} />
+        <SectionHead num="09" title={t.s8.h} lead={t.s8.l} />
         <div className="plans">
           {t.plans.map((p) => (
             <div className={`plan${p.badge ? " best" : ""}`} key={p.h}>
@@ -195,7 +195,7 @@ export function Faq() {
   return (
     <section className="band">
       <div className="shell">
-        <SectionHead num="09" title={t.s9.h} />
+        <SectionHead num="10" title={t.s9.h} />
         <div className="faq">
           {t.faq.map((f, i) => (
             <details key={f.q} open={i === 0}>

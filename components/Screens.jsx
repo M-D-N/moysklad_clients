@@ -19,7 +19,7 @@ export default function Screens() {
   return (
     <section className="band" id="screens">
       <div className="shell">
-        <SectionHead num="02" title={t.s2.h} lead={t.s2.l} />
+        <SectionHead num="03" title={t.s2.h} lead={t.s2.l} />
 
         <div className="gallery">
           {/* -------- каталог -------- */}

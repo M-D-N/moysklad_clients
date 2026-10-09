@@ -10,6 +10,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   const links = [
+    { href: "#paths", label: t.nav.paths },
     { href: "#how", label: t.nav.how },
     { href: "#screens", label: t.nav.screens },
     { href: "#features", label: t.nav.features },

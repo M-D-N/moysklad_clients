@@ -31,7 +31,7 @@ export default function Spots() {
   return (
     <section className="band">
       <div className="shell">
-        <SectionHead num="03" title={t.s3.h} lead={t.s3.l} />
+        <SectionHead num="04" title={t.s3.h} lead={t.s3.l} />
 
         {/* ---- 1. заказ в учёте ---- */}
         <div className="spot">

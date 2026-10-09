@@ -1,5 +1,6 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import Paths from "@/components/Paths";
 import Screens from "@/components/Screens";
 import Spots from "@/components/Spots";
 import { Lead, Footer } from "@/components/Lead";
@@ -20,6 +21,7 @@ export default function Page() {
       <Nav />
       <Hero />
       <Facts />
+      <Paths />
       <HowItWorks />
       <Screens />
       <Spots />
