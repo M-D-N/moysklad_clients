@@ -30,12 +30,6 @@ export default function Nav() {
         <div className="nav-bar">
           <a className="brand" href="#top" onClick={() => setOpen(false)}>
             <Logo />
-            <span className="brand-txt">
-              <span className="brand-name">
-                Tele<i>dukon</i>
-              </span>
-              <span className="brand-by">{t.brandBy}</span>
-            </span>
           </a>
 
           <div className="nav-links">

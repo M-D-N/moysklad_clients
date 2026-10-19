@@ -37,12 +37,6 @@ export default function Footer() {
         <div className="footer-brand">
           <div className="brand">
             <Logo light />
-            <span className="brand-txt">
-              <span className="brand-name">
-                Tele<i>dukon</i>
-              </span>
-              <span className="brand-by">{t.brandBy}</span>
-            </span>
           </div>
 
           <p className="footer-tag">
