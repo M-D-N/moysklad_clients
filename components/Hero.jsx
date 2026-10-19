@@ -1,113 +1,134 @@
 "use client";
 
-import Logo from "./Logo";
+import Logo, { ArrowUpRight, ShopIcon } from "./Logo";
 import { useI18n } from "@/lib/i18n";
 
-/** Нижнее меню мини-аппа. active — индекс подсвеченного пункта. */
-export function ScNav({ labels, active = 0 }) {
-  const icons = ["⌂", "▤", "◫", "◎"];
+/* Иллюстрации на трёх карточках героя. В макете это объёмные картинки;
+   до получения исходников рисуем их плоско, в той же палитре. */
+
+function OrderArt() {
   return (
-    <div className="sc-nav">
-      {labels.map((l, i) => (
-        <div key={l} className={i === active ? "on" : undefined}>
-          <i>{icons[i]}</i>
-          {l}
-        </div>
-      ))}
-    </div>
+    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="30" cy="30" r="24" fill="#E7F7F0" />
+      <path d="M14 20h6l5 20h22" stroke="#12906A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="24" y="22" width="22" height="13" rx="3" fill="#34C495" />
+      <circle cx="28" cy="46" r="3.4" fill="#0A6B4C" />
+      <circle cx="42" cy="46" r="3.4" fill="#0A6B4C" />
+      <circle cx="47" cy="19" r="9" fill="#12906A" />
+      <path d="M47 15.4v7.2M43.4 19h7.2" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" />
+    </svg>
   );
 }
 
+function ShopArt() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="24" fill="#E7F7F0" />
+      <path d="M18 26h28l-3 20a5 5 0 0 1-5 4H26a5 5 0 0 1-5-4l-3-20Z" fill="#34C495" />
+      <path d="M25 26v-4a7 7 0 0 1 14 0v4" stroke="#0A6B4C" strokeWidth="3" strokeLinecap="round" />
+      <path d="M42 31 24 41l5.6 1.6 1.8 5.6 2.8-4.6 5 3.2L42 31Z" fill="#fff" />
+    </svg>
+  );
+}
+
+function StockArt() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="24" fill="#E7F7F0" />
+      <rect x="16" y="26" width="18" height="18" rx="3" fill="#34C495" />
+      <rect x="32" y="18" width="16" height="16" rx="3" fill="#12906A" />
+      <path
+        d="M22 50a14 14 0 0 0 22-3"
+        stroke="#0A6B4C"
+        strokeWidth="3"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path d="M44 42v6h-6" stroke="#0A6B4C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+const ARTS = [OrderArt, ShopArt, StockArt];
+
 export default function Hero() {
   const { t } = useI18n();
-  const m = t.mock;
+  const h = t.hero;
 
   return (
-    <header className="hero shell" id="top">
-      <div className="hero-grid">
+    <header className="hero" id="top">
+      <div className="shell hero-in">
         <div className="hero-copy">
-          <div className="eyebrow rise">{t.hero.eyebrow}</div>
-          <h1 className="rise d1">
-            {t.hero.h1a}
-            <span className="hl">{t.hero.h1hl}</span>
-            {t.hero.h1b}
-          </h1>
-          <p className="lead rise d2">{t.hero.lead}</p>
-
-          <div className="hero-cta rise d2">
-            <a className="btn btn-primary" href="#lead">
-              {t.hero.cta1}
-            </a>
-            <a className="btn btn-ghost" href="#screens">
-              {t.hero.cta2}
-            </a>
+          <div className="hero-badge">
+            <i>
+              <ShopIcon />
+            </i>
+            <span>
+              {h.badge[0]}
+              <br />
+              {h.badge[1]}
+            </span>
           </div>
 
-          <div className="tag-row rise d3">
-            {t.hero.tags.map((tag, i) => (
-              <span className="tag" key={i}>
-                {tag.a}
-                {tag.b ? <b>{tag.b}</b> : null}
+          <h1>
+            {h.h1a}
+            <span className="hl">{h.h1hl}</span>
+            {h.h1b}
+          </h1>
+
+          <p className="hero-lead">{h.lead}</p>
+
+          <div className="hero-cta">
+            <a className="btn btn-white" href="#lead">
+              {h.cta1}
+              <span className="btn-arrow">
+                <ArrowUpRight />
               </span>
-            ))}
+            </a>
+            <a className="btn btn-glass" href="#how">
+              {h.cta2}
+            </a>
           </div>
         </div>
 
-        <div className="phone-stage rise d2">
-          <div className="phone">
+        <div className="hero-art" aria-hidden="true">
+          <div className="hero-phone">
             <div className="screen">
-              <div className="sc-top">
-                <Logo />
-                <span className="nm">Bordo Shop</span>
-                <span className="lang">{m.lang}</span>
+              <div className="ph-top">
+                <Logo className="brand-mark" />
+                Teledukon
               </div>
 
-              <div className="sc-body">
-                <div className="debt">
-                  <span className="k">{m.debtLabel}</span>
-                  <span className="v">1 240 000 {m.currency}</span>
-                  <span className="sub">{m.priceType}</span>
-                </div>
+              <div className="ph-hi">{h.phone.hi}</div>
 
-                <div className="chips">
-                  {m.chips.map((c, i) => (
-                    <span className={`chip${i === 0 ? " on" : ""}`} key={c}>
-                      {c}
+              <div className="ph-card">
+                <div className="ph-label">{h.phone.balance}</div>
+                <div className="ph-chips">
+                  {h.phone.orgs.map((o, i) => (
+                    <span key={o} className={i === 0 ? "on" : undefined}>
+                      {o}
                     </span>
                   ))}
                 </div>
-
-                <div className="prod">
-                  <div className="ph" data-badge={m.badgePromo} />
-                  <div>
-                    <div className="nm">{m.products[0].n}</div>
-                    <div className="art">Арт: KR-25-W</div>
-                    <div className="pr">
-                      <span className="old">{m.products[0].old}</span>
-                      <span className="new-p">{m.products[0].p}</span>
-                    </div>
-                    <div className="st">{m.stock}</div>
-                  </div>
-                </div>
-
-                <div className="prod">
-                  <div
-                    className="ph"
-                    style={{ background: "linear-gradient(145deg,#2E3A46,#222834)" }}
-                  />
-                  <div>
-                    <div className="nm">{m.products[2].n}</div>
-                    <div className="art">Арт: GR-10</div>
-                    <div className="pr">
-                      <span className="new-p">{m.products[2].p}</span>
-                    </div>
-                    <div className="st">{m.stock}</div>
-                  </div>
-                </div>
+                <div className="ph-ok">{h.phone.ok}</div>
               </div>
-
-              <ScNav labels={m.nav} active={0} />
             </div>
+          </div>
+
+          <div className="hero-cards">
+            {h.cards.map((c, i) => {
+              const Art = ARTS[i];
+              return (
+                <div className={`hero-card${i === 1 ? " main" : ""}`} key={c.tag}>
+                  <span className="tag">{c.tag}</span>
+                  <span className="art">
+                    <Art />
+                  </span>
+                  <b>{c.h}</b>
+                  <small>{c.p}</small>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
