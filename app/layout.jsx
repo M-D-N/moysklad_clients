@@ -39,7 +39,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0A1012",
+  themeColor: "#1FA97B",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -48,13 +48,17 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
+      {/* Onest — ближайший к макету гротеск с кириллицей.
+          Если дизайнер назовёт свой шрифт, меняется только эта ссылка
+          и переменная --font-sans ниже. */}
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap"
         />
+        <style>{`:root{ --font-sans: "Onest"; }`}</style>
       </head>
       <body>
         <I18nProvider>{children}</I18nProvider>
