@@ -49,11 +49,21 @@ export function HowItWorks() {
   const s = t.s1;
 
   return (
-    <section className="band" id="how">
+    <section className="band how" id="how">
       <div className="shell">
-        <SecHead badge={s.badge} icon={<GearIcon />} num={s.num} ha={s.ha} hb="" hc={s.hb} />
+        <div className="sec-head">
+          <span className="badge">
+            <GearIcon />
+            {s.badge}
+          </span>
+          <span className="sec-num">{s.num}</span>
+        </div>
 
-        <div className="how-top">
+        <div className="how-head">
+          <h2 className="sec-title">
+            {s.ha}
+            <span className="hl">{s.hb}</span>
+          </h2>
           <div className="how-stat">
             <b>{s.statNum}</b>
             <span>{s.statNote}</span>
@@ -217,6 +227,12 @@ export function Features() {
                       </span>
                     ))}
                   </div>
+                  {/* кружок с точками справа — в макете он у каждой строки */}
+                  <span className="feat-dots" aria-hidden="true">
+                    {Array.from({ length: n + 1 }).map((_, k) => (
+                      <i key={k} />
+                    ))}
+                  </span>
                 </article>
               );
             })}

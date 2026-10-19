@@ -308,3 +308,11 @@ export function FacebookIcon() {
     </svg>
   );
 }
+
+export function CrownIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M2 12.4h12l1-7-3.6 2.4L8 3l-3.4 4.8L1 5.4l1 7Z" fill="currentColor" />
+    </svg>
+  );
+}

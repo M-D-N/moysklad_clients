@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, TagIcon, StarIcon } from "./Logo";
+import { ArrowUpRight, TagIcon, StarIcon, CrownIcon } from "./Logo";
 import { SecHead } from "./Sections";
 import { useI18n } from "@/lib/i18n";
 
@@ -46,17 +46,24 @@ export default function Plans() {
         {year && <p className="plans-save">{s.yearSave}</p>}
 
         <div className="plans-grid">
-          {s.plans.map((p) => {
+          {s.plans.map((p, i) => {
             // год считаем со скидкой 20% — так же, как в прайсе
             const price = year ? Math.round(p.price * 12 * 0.8) : p.price;
-            return (
-              <article className={`card plan${p.featured ? " plan-hot" : ""}`} key={p.name}>
+              // третий тариф в макете выделен своей палитрой с короной
+              const tone = p.featured ? " plan-hot" : i === 2 ? " plan-top" : "";
+              return (
+              <article className={`card plan${tone}`} key={p.name}>
                 <div className="plan-top">
                   <span className="plan-name">{p.name}</span>
                   {p.featured && (
                     <span className="plan-trial">
                       <StarIcon />
                       {s.trial}
+                    </span>
+                  )}
+                  {i === 2 && (
+                    <span className="plan-crown">
+                      <CrownIcon />
                     </span>
                   )}
                 </div>
