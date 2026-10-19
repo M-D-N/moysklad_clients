@@ -7,38 +7,22 @@ import {
   ArrowRight,
   GearIcon,
   SparkIcon,
-  ShopIcon,
   BoltIcon,
   UsersIcon,
   StarIcon,
-  CatalogArt,
-  PriceArt,
-  FinanceArt,
-  BellArt,
-  LaunchReadyArt,
-  LaunchNewArt,
-  LaunchOtherArt,
 } from "./Logo";
 import { useI18n } from "@/lib/i18n";
 
-/** Шапка секции: бейдж слева, номер справа, заголовок под ними. */
-export function SecHead({ badge, icon, num, ha, hb, hc, dark = false, children }) {
+/** Шапка секции: бейдж слева, номер справа. */
+export function SecHead({ badge, icon, num, dark = false }) {
   return (
-    <>
-      <div className="sec-head">
-        <span className={`badge${dark ? " badge-dark" : ""}`}>
-          {icon}
-          {badge}
-        </span>
-        <span className={`sec-num${dark ? " sec-num-dark" : ""}`}>{num}</span>
-      </div>
-      <h2 className={`sec-title${dark ? " sec-title-dark" : ""}`}>
-        {ha}
-        <span className="hl">{hb}</span>
-        {hc}
-      </h2>
-      {children}
-    </>
+    <div className="sec-head">
+      <span className={`badge${dark ? " badge-dark" : ""}`}>
+        {icon}
+        {badge}
+      </span>
+      <span className={`sec-num${dark ? " sec-num-dark" : ""}`}>{num}</span>
+    </div>
   );
 }
 
@@ -51,13 +35,7 @@ export function HowItWorks() {
   return (
     <section className="band how" id="how">
       <div className="shell">
-        <div className="sec-head">
-          <span className="badge">
-            <GearIcon />
-            {s.badge}
-          </span>
-          <span className="sec-num">{s.num}</span>
-        </div>
+        <SecHead badge={s.badge} icon={<GearIcon />} num={s.num} />
 
         <div className="how-head">
           <h2 className="sec-title">
@@ -70,7 +48,7 @@ export function HowItWorks() {
           </div>
         </div>
 
-        {/* схема «витрина → Teledukon → МойСклад»: две версии картинки */}
+        {/* схема «витрина → Teledukon → МойСклад»: широкая и узкая версии */}
         <figure className="how-art">
           <img className="only-wide" src="/img/how-desktop.webp" alt={s.alt} loading="lazy" />
           <img className="only-narrow" src="/img/how-mobile.webp" alt={s.alt} loading="lazy" />
@@ -82,11 +60,16 @@ export function HowItWorks() {
         </h3>
 
         <div className="how-steps">
-          {s.steps.map((st) => (
+          {s.steps.map((st, i) => (
             <article className="card step-card" key={st.n}>
-              <span className="step-n">{st.n}</span>
-              <h4>{st.h}</h4>
-              <p>{st.p}</p>
+              <span className="step-img">
+                <img src={`/img/step-${i + 1}.webp`} alt="" loading="lazy" />
+              </span>
+              <div className="step-copy">
+                <span className="step-n">{st.n}</span>
+                <h4>{st.h}</h4>
+                <p>{st.p}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -102,24 +85,26 @@ export function Showcase() {
   const s = t.s2;
 
   return (
-    <section className="band dark-band" id="start">
-      <div className="shell">
-        <SecHead
-          badge={s.badge}
-          icon={<SparkIcon />}
-          num={s.num}
-          ha={s.ha}
-          hb={s.hb}
-          hc={s.hc}
-          dark
-        />
+    <section className="band dark-band show" id="start">
+      <div className="shell show-top">
+        <div className="show-copy">
+          <SecHead badge={s.badge} icon={<SparkIcon />} num={s.num} dark />
 
-        <a className="btn btn-white show-cta" href="#lead">
-          {s.cta}
-          <span className="btn-arrow">
-            <ArrowUpRight />
-          </span>
-        </a>
+          <h2 className="sec-title sec-title-dark">
+            {s.ha}
+            <span className="hl">{s.hb}</span>
+            {s.hc}
+          </h2>
+
+          <a className="btn btn-white show-cta" href="#lead">
+            {s.cta}
+            <span className="btn-arrow">
+              <ArrowUpRight />
+            </span>
+          </a>
+        </div>
+
+        <img className="show-icon" src="/img/app-icon.webp" alt="" loading="lazy" />
       </div>
 
       <figure className="show-art">
@@ -139,9 +124,14 @@ export function Manage() {
   const move = (d) => setI((v) => (v + d + s.slides.length) % s.slides.length);
 
   return (
-    <section className="band" id="manage">
+    <section className="band manage" id="manage">
       <div className="shell">
-        <SecHead badge={s.badge} icon={<GearIcon />} num={s.num} ha={s.ha} hb={s.hb} />
+        <SecHead badge={s.badge} icon={<GearIcon />} num={s.num} />
+
+        <h2 className="sec-title">
+          {s.ha}
+          <span className="hl">{s.hb}</span>
+        </h2>
 
         <div className="manage-grid">
           <div className="card manage-copy">
@@ -164,10 +154,10 @@ export function Manage() {
             <p>{slide.p2}</p>
 
             <div className="manage-foot">
-              <a className="btn btn-white manage-cta" href="#lead">
-                <span className="btn-stack">
+              <a className="manage-cta" href="#lead">
+                <span>
                   {s.cta}
-                  <span className="btn-sub">{s.ctaSub}</span>
+                  <i>{s.ctaSub}</i>
                 </span>
                 <span className="btn-arrow">
                   <ArrowUpRight />
@@ -196,46 +186,47 @@ export function Manage() {
 
 /* ========================= 04 · возможности ======================== */
 
-const FEATURE_ARTS = [CatalogArt, PriceArt, FinanceArt, BellArt];
-
 export function Features() {
   const { t } = useI18n();
   const s = t.s4;
 
   return (
-    <section className="band" id="features">
+    <section className="band features" id="features">
       <div className="shell">
         <div className="card feat-box">
-          <SecHead badge={s.badge} icon={<StarIcon />} num={s.num} ha={s.ha} hb={s.hb} />
+          <SecHead badge={s.badge} icon={<StarIcon />} num={s.num} />
+
+          <h2 className="sec-title">
+            {s.ha}
+            <span className="hl">{s.hb}</span>
+          </h2>
 
           <div className="feat-rows">
-            {s.rows.map((r, n) => {
-              const Art = FEATURE_ARTS[n];
-              return (
-                <article className="feat-row" key={r.h}>
-                  <span className="feat-art">
-                    <Art />
-                  </span>
-                  <div className="feat-copy">
-                    <h3>{r.h}</h3>
-                    <p>{r.p}</p>
-                  </div>
-                  <div className="feat-chips">
-                    {r.chips.map((c) => (
-                      <span className="chip" key={c}>
-                        {c}
-                      </span>
-                    ))}
-                  </div>
-                  {/* кружок с точками справа — в макете он у каждой строки */}
-                  <span className="feat-dots" aria-hidden="true">
-                    {Array.from({ length: n + 1 }).map((_, k) => (
-                      <i key={k} />
-                    ))}
-                  </span>
-                </article>
-              );
-            })}
+            {s.rows.map((r, n) => (
+              <article className="feat-row" key={r.h}>
+                <img className="feat-art" src={`/img/feat-${n + 1}.webp`} alt="" loading="lazy" />
+
+                <div className="feat-copy">
+                  <h3>{r.h}</h3>
+                  <p>{r.p}</p>
+                </div>
+
+                <div className="feat-chips">
+                  {r.chips.map((c) => (
+                    <span className="chip" key={c}>
+                      {c}
+                    </span>
+                  ))}
+                </div>
+
+                {/* кружок с точками: по макету их число растёт от строки к строке */}
+                <span className="feat-dots" aria-hidden="true">
+                  {[0, 1, 2, 3].map((k) => (
+                    <i key={k} className={k <= n ? "on" : undefined} />
+                  ))}
+                </span>
+              </article>
+            ))}
           </div>
         </div>
       </div>
@@ -245,39 +236,39 @@ export function Features() {
 
 /* ======================== 05 · быстрый запуск ====================== */
 
-const LAUNCH_ARTS = [LaunchReadyArt, LaunchNewArt, LaunchOtherArt];
-
 export function Launch() {
   const { t } = useI18n();
   const s = t.s5;
 
   return (
-    <section className="band" id="launch">
+    <section className="band launch" id="launch">
       <div className="shell">
-        <SecHead badge={s.badge} icon={<BoltIcon />} num={s.num} ha={s.ha} hb={s.hb} />
+        <SecHead badge={s.badge} icon={<BoltIcon />} num={s.num} />
+
+        <h2 className="sec-title">
+          {s.ha}
+          <span className="hl">{s.hb}</span>
+        </h2>
 
         <div className="launch-grid">
-          {s.cards.map((c, n) => {
-            const Art = LAUNCH_ARTS[n];
-            return (
-              <article className="card launch-card" key={c.h}>
-                <span className="launch-art">
-                  <Art />
+          {s.cards.map((c, n) => (
+            <article className={`launch-card${n === 2 ? " launch-card-out" : ""}`} key={c.h}>
+              <span className="launch-art">
+                <img src={`/img/launch-${n + 1}.webp`} alt="" loading="lazy" />
+              </span>
+              <h3>{c.h}</h3>
+              <p>{c.p}</p>
+              <a className={`launch-cta${c.primary ? " primary" : ""}`} href="#lead">
+                <span>
+                  {c.cta}
+                  <i>{c.sub}</i>
                 </span>
-                <h3>{c.h}</h3>
-                <p>{c.p}</p>
-                <a className={`btn ${c.primary ? "btn-dark" : "btn-outline"} launch-cta`} href="#lead">
-                  <span className="btn-stack">
-                    {c.cta}
-                    <span className="btn-sub">{c.sub}</span>
-                  </span>
-                  <span className="btn-arrow">
-                    <ArrowUpRight />
-                  </span>
-                </a>
-              </article>
-            );
-          })}
+                <span className="btn-arrow">
+                  <ArrowUpRight />
+                </span>
+              </a>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -289,14 +280,10 @@ export function Launch() {
 export function Who() {
   const { t } = useI18n();
   const s = t.s6;
-  const left = s.cards.filter((_, n) => n % 2 === 0);
-  const right = s.cards.filter((_, n) => n % 2 === 1);
 
-  const card = (c) => (
+  const card = (c, n) => (
     <article className="card who-card" key={c.h}>
-      <span className="who-icon">
-        <ShopIcon />
-      </span>
+      <img className="who-icon" src={`/img/who-${n + 1}.webp`} alt="" loading="lazy" />
       <h3>{c.h}</h3>
       <p>{c.p}</p>
     </article>
@@ -305,14 +292,23 @@ export function Who() {
   return (
     <section className="band dark-band who" id="who">
       <div className="shell">
-        <SecHead badge={s.badge} icon={<UsersIcon />} num={s.num} ha={s.ha} hb={s.hb} dark />
+        <SecHead badge={s.badge} icon={<UsersIcon />} num={s.num} dark />
+
+        <h2 className="sec-title sec-title-dark">
+          {s.ha}
+          <span className="hl">{s.hb}</span>
+        </h2>
 
         <div className="who-grid">
-          <div className="who-col">{left.map(card)}</div>
+          <div className="who-col">
+            {s.cards.filter((_, n) => n % 2 === 0).map((c, n) => card(c, n * 2))}
+          </div>
           <figure className="who-art">
             <img src="/img/who-phone.webp" alt={s.alt} loading="lazy" />
           </figure>
-          <div className="who-col">{right.map(card)}</div>
+          <div className="who-col who-col-r">
+            {s.cards.filter((_, n) => n % 2 === 1).map((c, n) => card(c, n * 2 + 1))}
+          </div>
         </div>
       </div>
     </section>

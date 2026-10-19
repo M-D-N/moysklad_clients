@@ -316,3 +316,13 @@ export function CrownIcon() {
     </svg>
   );
 }
+
+export function GiftIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <rect x="2" y="6.4" width="12" height="7.6" rx="1.6" fill="currentColor" />
+      <rect x="1.2" y="3.6" width="13.6" height="3.2" rx="1.2" fill="currentColor" />
+      <path d="M8 3.6V14M8 3.6C7.2 1.6 4.4 1.6 4.4 3.2c0 .9 1.4 1 3.6.4Zm0 0c.8-2 3.6-2 3.6-.4 0 .9-1.4 1-3.6.4Z" stroke="#fff" strokeWidth="1.1" />
+    </svg>
+  );
+}
