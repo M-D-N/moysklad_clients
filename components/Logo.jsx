@@ -123,14 +123,24 @@ export function SparkIcon() {
 }
 
 export function ShopIcon() {
-  // торговый ларёк: полосатый навес, прилавок под ним и тумба — как в макете
+  // торговый ларёк из макета: навес с тремя зубцами, фестончатый низ навеса
+  // и прилавок под ним; заливка — вертикальный градиент
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <rect x="3" y="3.2" width="5.2" height="5.6" rx="1.1" />
-      <rect x="9.4" y="3.2" width="5.2" height="5.6" rx="1.1" />
-      <rect x="15.8" y="3.2" width="5.2" height="5.6" rx="1.1" />
-      <rect x="3" y="8" width="18" height="3.6" rx="1.3" />
-      <rect x="4.4" y="13.8" width="15.2" height="4.6" rx="1.3" />
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="shop-g" x1="20" y1="0" x2="20" y2="40" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#17735A" />
+          <stop offset="1" stopColor="#63B69C" />
+        </linearGradient>
+      </defs>
+      <path
+        fill="url(#shop-g)"
+        d="M3.4 1.1A1.1 1.1 0 0 1 4.5 0h6A1.1 1.1 0 0 1 11.6 1.1V9.8h2.9V1.1A1.1 1.1 0 0 1 15.6 0h8.8a1.1 1.1 0 0 1 1.1 1.1V9.8h2.9V1.1A1.1 1.1 0 0 1 29.5 0h6a1.1 1.1 0 0 1 1.1 1.1C38.3 5 40 9 40 13.6v8a6.67 3.2 0 0 1-13.33 0 6.67 3.2 0 0 1-13.34 0 6.67 3.2 0 0 1-13.33 0v-8C0 9 1.7 5 3.4 1.1Z"
+      />
+      <path
+        fill="url(#shop-g)"
+        d="M1 29a1.6 1.6 0 0 1 1.6-1.6h34.8A1.6 1.6 0 0 1 39 29v5.4a4.4 4.4 0 0 1-4.4 4.4H5.4A4.4 4.4 0 0 1 1 34.4V29Z"
+      />
     </svg>
   );
 }
