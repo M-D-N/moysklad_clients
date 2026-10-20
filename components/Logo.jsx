@@ -123,15 +123,14 @@ export function SparkIcon() {
 }
 
 export function ShopIcon() {
+  // торговый ларёк: полосатый навес, прилавок под ним и тумба — как в макете
   return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path
-        d="M2.5 5.5h11l-.8 7a1.6 1.6 0 0 1-1.6 1.4H4.9a1.6 1.6 0 0 1-1.6-1.4l-.8-7Z"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinejoin="round"
-      />
-      <path d="M5.8 5.5V4.3a2.2 2.2 0 0 1 4.4 0v1.2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <rect x="3" y="3.2" width="5.2" height="5.6" rx="1.1" />
+      <rect x="9.4" y="3.2" width="5.2" height="5.6" rx="1.1" />
+      <rect x="15.8" y="3.2" width="5.2" height="5.6" rx="1.1" />
+      <rect x="3" y="8" width="18" height="3.6" rx="1.3" />
+      <rect x="4.4" y="13.8" width="15.2" height="4.6" rx="1.3" />
     </svg>
   );
 }

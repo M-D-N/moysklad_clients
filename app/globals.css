@@ -407,30 +407,28 @@ p{ margin: 0; }
   margin-top: 38px;
 }
 
-/* бейдж «новый формат онлайн-продаж» */
+/* бейдж «новый формат онлайн-продаж»:
+   по макету подложки-пилюли нет — только белая плашка с иконкой и текст */
 .hero-badge{
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 11px 22px 11px 11px;
-  border-radius: var(--r-pill);
-  background: rgba(0, 38, 25, .34);
-  backdrop-filter: blur(6px);
+  gap: 14px;
 }
 .hero-badge i{
   display: grid;
   place-items: center;
-  width: 40px;
+  flex: 0 0 auto;
+  width: 46px;
   height: 40px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, .16);
+  background: #fff;
 }
-.hero-badge svg{ width: 15px; height: 15px; color: #fff; }
+.hero-badge svg{ width: 19px; height: 19px; color: var(--g-700); }
 .hero-badge span{
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  line-height: 1.35;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  line-height: 1.45;
   text-transform: uppercase;
   color: #fff;
 }
