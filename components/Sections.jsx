@@ -86,14 +86,18 @@ export function Showcase() {
 
   return (
     <section className="band dark-band show" id="start">
+      <div className="shell">
+        {/* шапка секции идёт по всей ширине контейнера: номер — у правого края */}
+        <SecHead badge={s.badge} icon={<SparkIcon />} num={s.num} dark />
+      </div>
+
       <div className="shell show-top">
         <div className="show-copy">
-          <SecHead badge={s.badge} icon={<SparkIcon />} num={s.num} dark />
-
-          <h2 className="sec-title sec-title-dark">
-            {s.ha}
+          {/* в макете заголовок разбит ровно на три строки */}
+          <h2 className="sec-title sec-title-dark show-h2">
+            <span>{s.ha}</span>
             <span className="hl">{s.hb}</span>
-            {s.hc}
+            <span>{s.hc}</span>
           </h2>
 
           <a className="btn btn-white show-cta" href="#lead">

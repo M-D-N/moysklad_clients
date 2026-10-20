@@ -196,8 +196,8 @@ p{ margin: 0; }
 .sec-num{
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 45px;
+  height: 30px;
   border-radius: var(--r-pill);
   background: var(--surface);
   color: var(--ink-3);
@@ -760,14 +760,22 @@ p{ margin: 0; }
   gap: 40px;
 }
 .show .sec-title{ max-width: 720px; }
+.show-h2 span{ display: block; }
 .show-cta{ margin-top: 44px; }
+/* 3D-иконка: по макету 252 в ширину и с отступом от правого края контейнера */
 .show-icon{
-  width: clamp(240px, 26vw, 400px);
-  margin-top: -30px;
+  width: clamp(240px, 24.8vw, 357px);
+  margin: 4px clamp(0px, 5.8vw, 83px) 0 0;
+  justify-self: end;
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .45));
 }
-.show-art{ margin-top: 56px; }
-.show-art img{ width: 100%; }
+/* композиция с телефонами идёт почти вплотную к кнопке */
+.show-art{
+  margin-top: 16px;
+  aspect-ratio: 1440 / 595;   /* низ композиции уходит за край полосы */
+  overflow: hidden;
+}
+.show-art img{ display: block; width: 100%; }
 
 /* ==================== 03 · управление бизнесом ==================== */
 
