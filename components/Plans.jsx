@@ -21,11 +21,11 @@ export default function Plans() {
   return (
     <section className="band plans" id="plans">
       <div className="shell">
-        <SecHead badge={s.badge} icon={<TagIcon />} num={s.num} dark />
+        <SecHead badge={s.badge} icon={<TagIcon />} num={s.num} />
 
         <div className="plans-head">
           {/* в макете заголовок разбит на две строки */}
-          <h2 className="sec-title sec-title-dark plans-h2">
+          <h2 className="sec-title plans-h2">
             <span>{s.ha}</span>
             <span className="hl">{s.hb}</span>
           </h2>

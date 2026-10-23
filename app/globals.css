@@ -1022,9 +1022,7 @@ p{ margin: 0; }
 
 /* =========================== 07 · тарифы ========================== */
 
-/* Полоса тёмная, карточки по 425 с зазором 12 — замеры с фреймов 36…38. */
-.plans{ background: #000; }
-
+/* Карточки по 425 с зазором 12 — замеры с фреймов 36…38. */
 .plans-head{
   display: flex;
   align-items: flex-end;
@@ -1045,13 +1043,14 @@ p{ margin: 0; }
   padding: 0 24px;
   border: 0;
   border-radius: var(--r-pill);
-  background: #fff;
-  color: var(--g-900);
+  background: var(--surface);
+  color: var(--ink-2);
   font-size: 14px;
   font-weight: 600;
+  box-shadow: var(--sh-card);
   cursor: pointer;
 }
-.plans-switch button.on{ background: rgba(255, 255, 255, .1); color: #fff; }
+.plans-switch button.on{ background: var(--g-900); color: #fff; }
 .plans-switch button.on::before{
   content: "";
   width: 7px;
@@ -1059,7 +1058,7 @@ p{ margin: 0; }
   border-radius: 50%;
   background: var(--mint);
 }
-.plans-save{ margin-top: 16px; font-size: 13.5px; color: var(--mint); font-weight: 600; }
+.plans-save{ margin-top: 16px; font-size: 13.5px; color: var(--g-600); font-weight: 600; }
 
 .plans-grid{
   display: grid;
