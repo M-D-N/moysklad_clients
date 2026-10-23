@@ -295,8 +295,9 @@ export function Who() {
 
   return (
     <section className="band who" id="who">
-      {/* ступенчатая тёмная фигура позади карточек — низ секции */}
-      <span className="who-bg" aria-hidden="true" />
+      {/* фон от дизайнера: бледная стрелка сверху и тёмный купол снизу */}
+      <img className="who-arrow" src="/img/who-arrow.webp" alt="" aria-hidden="true" />
+      <img className="who-dome" src="/img/who-dome.webp" alt="" aria-hidden="true" />
 
       <div className="shell">
         <SecHead badge={s.badge} icon={<UsersIcon />} num={s.num} />

@@ -960,33 +960,26 @@ p{ margin: 0; }
 
 /* ======================= 06 · кому подойдёт ======================= */
 
-/* Секция светлая; тёмная «ступенчатая» фигура закрывает её низ.
-   Размеры сняты с макета (кадр 1440): верх фигуры на y=400 от бейджа,
-   плечи на y=600, срезы по 45° до края на y=672. */
+/* Секция светлая. Фон собран из двух исходников дизайнера: бледная стрелка
+   во всю ширину сверху и тёмный купол, прижатый к низу секции.
+   Отсчёт по фрейму 1440x1328: бейдж на y=355, купол начинается на y=736. */
 .who{
   position: relative;
   overflow: hidden;
-  padding-bottom: 106px;
+  padding: 355px 0 102px;
   background: var(--page);
 }
-.who-bg{
+.who-arrow,
+.who-dome{
   position: absolute;
   left: 0;
-  right: 0;
-  bottom: 0;
-  height: 576px;
-  background:
-    radial-gradient(46% 60% at 50% 16%, rgba(0, 0, 0, .55), transparent 72%),
-    linear-gradient(180deg, #00190F, #053F2B);
-  clip-path: polygon(
-    25.42% 0,     21.67% 54px,
-    21.67% 200px, 5% 200px,
-    0 272px,      0 100%,
-    100% 100%,    100% 272px,
-    95% 200px,    78.33% 200px,
-    78.33% 54px,  74.58% 0
-  );
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
 }
+.who-arrow{ top: 0; }
+.who-dome{ bottom: 0; }
 .who .shell{ position: relative; z-index: 1; }
 
 .who-h2{ margin-top: 40px; font-size: 44px; line-height: 1.12; }
