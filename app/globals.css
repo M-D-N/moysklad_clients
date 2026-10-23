@@ -1272,54 +1272,73 @@ p{ margin: 0; }
 
 /* =========================== 09 · заявка ========================== */
 
-.lead-band{ padding-bottom: 120px; }
+/* Полоса-карточка во всю ширину со скруглением 23; контент — по контейнеру.
+   Замеры с фрейма 42 (1440x904). */
+.lead-band{ padding: 0; }
 .lead-card{
   position: relative;
   overflow: hidden;
-  padding: 56px;
-  border-radius: 32px;
+  padding: 110px 0 108px;
+  border-radius: 23px;
   background: var(--dark) url("/img/cta2-bg.webp") center / cover no-repeat;
   color: #fff;
 }
-.lead-copy{ position: relative; z-index: 2; max-width: 640px; }
+.lead-in{ position: relative; z-index: 2; }
+.lead-in .sec-head{ position: relative; z-index: 3; }   /* номер поверх телефонов */
+.lead-copy{ max-width: 780px; }
 .lead-copy .sec-head{ max-width: none; }
-.lead-form{ margin-top: 44px; max-width: 580px; }
-.lf-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.lf-field{ display: block; margin-bottom: 16px; }
+.lead-h2{ margin-top: 48px; font-size: 44px; line-height: 1.2; }
+.lead-h2 span{ display: block; }
+
+.lead-form{ margin-top: 65px; max-width: 554px; }
+.lf-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 10px; }
+
+/* поле целиком — заливная плашка, подпись лежит внутри над значением */
+.lf-field{
+  display: block;
+  margin-bottom: 10px;
+  padding: 21px 26px 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .17);
+}
+.lf-row .lf-field{ margin-bottom: 0; }
 .lf-field span{
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
+  line-height: 1.3;
   color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .lf-field input,
 .lf-field textarea{
+  display: block;
   width: 100%;
-  padding: 16px 20px;
+  padding: 0;
   border: 0;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, .14);
+  background: none;
   color: #fff;
   font: inherit;
   font-size: 15px;
-  resize: vertical;
+  line-height: 1.3;
+  resize: none;
 }
+.lf-field textarea{ height: 93px; }
 .lf-field input::placeholder,
-.lf-field textarea::placeholder{ color: rgba(255, 255, 255, .62); }
+.lf-field textarea::placeholder{ color: rgba(255, 255, 255, .72); }
 .lf-field input:focus,
-.lf-field textarea:focus{ outline: 2px solid var(--mint); outline-offset: 1px; }
+.lf-field textarea:focus{ outline: 2px solid var(--mint); outline-offset: 6px; }
 .lf-err{ margin: 6px 0 0; font-size: 13px; color: #FFD2D2; }
-.lf-submit{ margin-top: 22px; }
-.lead-ok{ margin-top: 36px; }
+.lf-submit{ min-width: 258px; height: 78px; margin-top: 20px; border-radius: 18px; }
+.lead-ok{ margin-top: 48px; }
 .lead-ok h3{ color: #fff; margin-bottom: 10px; }
 .lead-ok p{ color: rgba(255, 255, 255, .82); margin-bottom: 22px; }
 
-/* телефоны справа выходят за край карточки */
+/* телефоны справа выходят за край полосы */
 .lead-art{
   position: absolute;
-  right: -40px;
-  bottom: -40px;
+  right: -20px;
+  bottom: -120px;
   width: 54%;
   z-index: 1;
 }

@@ -48,19 +48,20 @@ export function Lead() {
 
   return (
     <section className="band lead-band" id="lead">
-      <div className="shell">
-        <div className="lead-card">
-          <div className="lead-copy">
-            <div className="sec-head">
-              <span className="badge badge-dark">
-                <SparkIcon />
-                {s.badge}
-              </span>
-              <span className="sec-num sec-num-dark">{s.num}</span>
-            </div>
+      <div className="lead-card">
+        <div className="shell lead-in">
+          {/* шапка на всю ширину контейнера: номер — у правого края */}
+          <div className="sec-head">
+            <span className="badge badge-dark">
+              <SparkIcon />
+              {s.badge}
+            </span>
+            <span className="sec-num">{s.num}</span>
+          </div>
 
-            <h2 className="sec-title sec-title-dark">
-              {s.ha}
+          <div className="lead-copy">
+            <h2 className="sec-title sec-title-dark lead-h2">
+              <span>{s.ha}</span>
               <span className="hl">{s.hb}</span>
             </h2>
 
