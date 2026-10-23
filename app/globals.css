@@ -1445,3 +1445,103 @@ p{ margin: 0; }
   .manage-foot{ flex-direction: column; align-items: stretch; }
   .manage-nav{ justify-content: flex-end; }
 }
+
+/* ======================== оживление: наведение ===================== */
+
+/* Шапка: пока страница не прокручена, она лежит на герое; при прокрутке
+   усиливаем тень, чтобы пилюля и кнопка не сливались с контентом. */
+.nav-bar,
+.nav-cta{ transition: box-shadow .25s ease, transform .25s ease; }
+.nav-stuck .nav-bar{ box-shadow: 0 10px 30px -12px rgba(4, 48, 34, .28), 0 2px 8px -4px rgba(4, 48, 34, .22); }
+.nav-stuck .nav-cta{ box-shadow: 0 12px 28px -14px rgba(4, 48, 34, .5); }
+
+/* ссылки меню: подчёркивание выезжает слева направо */
+.nav-links a{ position: relative; transition: color .2s ease; }
+.nav-links a::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--g-500);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+.nav-links a:hover::after{ transform: scaleX(1); }
+
+/* карточки чуть приподнимаются */
+.step-card,
+.who-card,
+.launch-card,
+.client,
+.faq-item,
+.plan{ transition: transform .25s ease, box-shadow .25s ease; }
+.step-card:hover,
+.who-card:hover,
+.launch-card:hover,
+.plan:hover{ transform: translateY(-4px); box-shadow: var(--sh-float); }
+.client:hover{ transform: translateY(-3px); box-shadow: var(--sh-card); }
+.faq-item:hover{ box-shadow: var(--sh-float); }
+/* у «кому подойдёт» крайние карточки уже сдвинуты — не теряем сдвиг */
+.who-col > :nth-child(odd):hover{ transform: translateX(42px) translateY(-4px); }
+.who-col-r > :nth-child(odd):hover{ transform: translateX(-42px) translateY(-4px); }
+
+/* иконки и картинки внутри карточек слегка подрастают */
+.who-icon,
+.step-img img,
+.feat-art,
+.launch-art img,
+.plan-arrow,
+.btn-arrow,
+.badge svg,
+.client span{ transition: transform .25s ease; }
+.who-card:hover .who-icon,
+.step-card:hover .step-img img,
+.feat-row:hover .feat-art,
+.launch-card:hover .launch-art img{ transform: scale(1.06); }
+.btn:hover .btn-arrow,
+.plan-cta:hover .plan-arrow,
+.manage-cta:hover .btn-arrow,
+.launch-cta:hover .btn-arrow{ transform: translate(2px, -2px); }
+.badge:hover svg{ transform: rotate(-12deg) scale(1.12); }
+.client:hover span{ transform: scale(1.06); }
+
+/* строки «Возможностей» подсвечиваются целиком */
+.feat-row{ transition: background .25s ease; border-radius: 16px; }
+.feat-row:hover{ background: var(--g-50); }
+
+/* 3D-иконка в «Больше, чем просто бот» тихо покачивается */
+@keyframes show-float{
+  0%, 100%{ transform: translateY(0); }
+  50%     { transform: translateY(-12px); }
+}
+.show-icon{ animation: show-float 6s ease-in-out infinite; }
+
+/* стрелки слайдера и кнопки-квадраты */
+.manage-nav button{ transition: transform .2s ease, background .2s ease; }
+.manage-nav button:hover{ transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce){
+  .nav-bar,
+  .nav-cta,
+  .nav-links a::after,
+  .step-card,
+  .who-card,
+  .launch-card,
+  .client,
+  .faq-item,
+  .plan,
+  .who-icon,
+  .step-img img,
+  .feat-art,
+  .launch-art img,
+  .plan-arrow,
+  .btn-arrow,
+  .badge svg,
+  .feat-row,
+  .manage-nav button{ transition: none; }
+  .show-icon{ animation: none; }
+}

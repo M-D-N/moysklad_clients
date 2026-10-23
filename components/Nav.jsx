@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo, { PhoneIcon, Flag, Caret, ArrowUpRight } from "./Logo";
 import { useI18n } from "@/lib/i18n";
 import { PHONE_RAW, PHONE_HUMAN } from "@/lib/content";
@@ -19,13 +19,22 @@ export function navLinks(t) {
 export default function Nav() {
   const { lang, setLang, t } = useI18n();
   const [open, setOpen] = useState(false);
+  const [stuck, setStuck] = useState(false);
   const links = navLinks(t);
+
+  // пока страница не прокручена, шапка лежит на герое и тень не нужна
+  useEffect(() => {
+    const onScroll = () => setStuck(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // языков два, поэтому переключатель работает как тумблер, а не как список
   const toggleLang = () => setLang(lang === "ru" ? "uz" : "ru");
 
   return (
-    <nav className="nav">
+    <nav className={`nav${stuck ? " nav-stuck" : ""}`}>
       <div className="shell nav-in">
         <div className="nav-bar">
           <a className="brand" href="#top" onClick={() => setOpen(false)}>
