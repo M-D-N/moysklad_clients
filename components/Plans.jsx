@@ -6,7 +6,10 @@ import { SecHead } from "./Sections";
 import { useI18n } from "@/lib/i18n";
 
 /** 350000 → «350 000» */
-const money = (n) => n.toLocaleString("ru-RU").replace(/ /g, " ");
+const money = (n) => n.toLocaleString("ru-RU").replace(/ /g, " ");
+
+/** Оформление карточки по порядку: базовый, профессиональный, корпоративный. */
+const TONES = ["plan-base", "plan-pro", "plan-corp"];
 
 /* ============================ 07 · тарифы ============================ */
 
@@ -18,11 +21,12 @@ export default function Plans() {
   return (
     <section className="band plans" id="plans">
       <div className="shell">
-        <SecHead badge={s.badge} icon={<TagIcon />} num={s.num} />
+        <SecHead badge={s.badge} icon={<TagIcon />} num={s.num} dark />
 
         <div className="plans-head">
-          <h2 className="sec-title">
-            {s.ha}
+          {/* в макете заголовок разбит на две строки */}
+          <h2 className="sec-title sec-title-dark plans-h2">
+            <span>{s.ha}</span>
             <span className="hl">{s.hb}</span>
           </h2>
 
@@ -43,10 +47,9 @@ export default function Plans() {
           {s.plans.map((p, i) => {
             // год считаем со скидкой 20% — так же, как в прайсе
             const price = year ? Math.round(p.price * 12 * 0.8) : p.price;
-            const tone = p.featured ? " plan-hot" : i === 2 ? " plan-top" : "";
             return (
-              <article className={`plan${tone}`} key={p.name}>
-                <div className="plan-top">
+              <article className={`plan ${TONES[i] || TONES[0]}`} key={p.name}>
+                <div className="plan-head">
                   <span className="plan-name">{p.name}</span>
                   {p.featured && (
                     <span className="plan-trial">
@@ -67,17 +70,17 @@ export default function Plans() {
                 </div>
 
                 <a className="plan-cta" href="#lead">
-                  <span>
-                    {s.cta}
+                  <span className="plan-cta-txt">
+                    <b>{s.cta}</b>
                     <i>{p.sub}</i>
                   </span>
-                  <span className="btn-arrow">
+                  <span className="plan-arrow">
                     <ArrowUpRight />
                   </span>
                 </a>
 
                 <div className="plan-list">
-                  <div className="plan-who">{p.who}</div>
+                  <h4>{p.who}</h4>
                   <ul>
                     {p.u.map((u) => (
                       <li key={u}>

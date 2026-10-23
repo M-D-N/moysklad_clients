@@ -1022,6 +1022,9 @@ p{ margin: 0; }
 
 /* =========================== 07 · тарифы ========================== */
 
+/* Полоса тёмная, карточки по 425 с зазором 12 — замеры с фреймов 36…38. */
+.plans{ background: #000; }
+
 .plans-head{
   display: flex;
   align-items: flex-end;
@@ -1030,52 +1033,70 @@ p{ margin: 0; }
   flex-wrap: wrap;
 }
 .plans .sec-title{ max-width: 780px; }
-.plans-switch{
-  display: inline-flex;
-  gap: 6px;
-  padding: 6px;
-  border-radius: var(--r-pill);
-  background: var(--surface);
-  box-shadow: var(--sh-card);
-}
+.plans-h2 span{ display: block; }
+
+/* тумблер: активный период — тёмная плашка с точкой, второй — белая */
+.plans-switch{ display: inline-flex; gap: 8px; }
 .plans-switch button{
-  min-height: 48px;
-  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 0 24px;
   border: 0;
   border-radius: var(--r-pill);
-  background: transparent;
-  color: var(--ink-2);
-  font-size: 15px;
+  background: #fff;
+  color: var(--g-900);
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
-.plans-switch button.on{ background: var(--g-900); color: #fff; }
-.plans-save{ margin-top: 16px; font-size: 13.5px; color: var(--g-600); font-weight: 600; }
+.plans-switch button.on{ background: rgba(255, 255, 255, .1); color: #fff; }
+.plans-switch button.on::before{
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+.plans-save{ margin-top: 16px; font-size: 13.5px; color: var(--mint); font-weight: 600; }
 
 .plans-grid{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
-  gap: 24px;
-  margin-top: 52px;
+  gap: 12px;
+  margin-top: 42px;
 }
+
+/* ---- одна карточка; оформление задаётся переменными на .plan-* ---- */
 .plan{
-  padding: 28px;
-  border-radius: 28px;
-  background: var(--surface);
-  box-shadow: var(--sh-card);
+  padding: 25px;
+  border-radius: 21px;
+  background: var(--p-card, #fff);
+  color: var(--p-text, var(--ink-2));
 }
-.plan-top{ display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 34px; }
+
+.plan-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 31px;
+}
 .plan-name{
-  display: inline-block;
-  padding: 8px 16px;
-  border-radius: var(--r-pill);
-  background: var(--g-50);
-  color: var(--g-700);
-  font-size: 11.5px;
+  display: inline-flex;
+  align-items: center;
+  height: 31px;
+  padding: 0 18px;
+  border-radius: 10px;
+  background: var(--p-badge-bg);
+  color: var(--p-badge-fg);
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: .1em;
+  letter-spacing: .06em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 .plan-trial{
   display: inline-flex;
@@ -1083,68 +1104,113 @@ p{ margin: 0; }
   gap: 8px;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: .06em;
+  letter-spacing: .04em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--p-trial, #fff);
+  white-space: nowrap;
 }
-.plan-trial svg{ width: 16px; height: 16px; }
+.plan-trial svg{ width: 17px; height: 17px; }
 .plan-crown svg{ width: 26px; height: 26px; color: #F2A33C; }
 
-.plan-price{ display: flex; align-items: baseline; gap: 10px; margin: 26px 0 24px; flex-wrap: wrap; }
+.plan-price{ display: flex; align-items: baseline; gap: 8px; margin: 25px 0 0; flex-wrap: wrap; }
 .plan-price b{
-  font-size: clamp(30px, 3.1vw, 44px);
-  font-weight: 700;
-  letter-spacing: -.03em;
-  color: var(--g-700);
+  font-size: 38px;
+  font-weight: 500;
+  letter-spacing: -.02em;
   line-height: 1;
+  color: var(--p-price);
 }
-.plan-price span{ font-size: 13px; color: var(--ink-3); }
+.plan-price span{ font-size: 15px; color: var(--p-price); }
 
+/* кнопка тарифа: подпись слева, квадратная стрелка справа */
 .plan-cta{
-  width: 100%;
-  background: linear-gradient(100deg, var(--g-800), var(--g-600));
-  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  height: 77px;
+  margin-top: 28px;
+  padding: 0 8px 0 26px;
+  border-radius: 14px;
+  background: var(--p-cta-bg);
 }
-.plan-cta .btn-arrow{ background: #fff; color: var(--g-800); }
+.plan-cta-txt{ display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.plan-cta-txt b{ font-size: 15px; font-weight: 700; color: var(--p-cta-fg); }
+.plan-cta-txt i{ font-size: 12px; font-style: normal; color: var(--p-cta-sub); }
+.plan-arrow{
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 61px;
+  height: 61px;
+  border-radius: 18px;
+  background: var(--p-btn-bg);
+  color: var(--p-btn-fg);
+}
+.plan-arrow svg{ width: 19px; height: 19px; }
 
 .plan-list{
-  margin-top: 26px;
-  padding: 24px;
-  border-radius: 20px;
-  background: var(--g-50);
+  margin-top: 25px;
+  padding: 26px;
+  border-radius: 13px;
+  background: var(--p-panel);
 }
-.plan-who{ font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 18px; }
-.plan-list ul{ margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
-.plan-list li{ display: flex; gap: 12px; font-size: 13px; line-height: 1.5; color: var(--ink-2); }
-.plan-list li svg{ width: 14px; height: 14px; flex: 0 0 14px; margin-top: 3px; color: var(--g-700); }
+.plan-list h4{ font-size: 15px; font-weight: 700; color: var(--p-title); margin-bottom: 25px; }
+.plan-list ul{ margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.plan-list li{ display: flex; gap: 11px; font-size: 11.5px; line-height: 1.3; color: var(--p-text); }
+.plan-list li svg{ width: 14px; height: 14px; flex: 0 0 14px; margin-top: 1px; color: var(--p-star); }
 
-/* средний тариф: зелёная заливка и приподнятая карточка */
-.plan-hot{
-  background: linear-gradient(170deg, #3FBF90, var(--g-800));
-  box-shadow: 0 40px 80px -40px rgba(4, 78, 54, .6);
-  padding: 32px;
-  margin-top: -26px;
+/* ---- 1. базовый ---- */
+.plan-base{
+  --p-card: #fff;
+  --p-badge-bg: #EDF5F3;
+  --p-badge-fg: #066547;
+  --p-price: #066547;
+  --p-cta-bg: linear-gradient(97deg, #086749, #308C70);
+  --p-cta-fg: #fff;
+  --p-cta-sub: rgba(255, 255, 255, .7);
+  --p-btn-bg: #fff;
+  --p-btn-fg: #066547;
+  --p-panel: #EDF5F3;
+  --p-title: var(--ink);
+  --p-star: #0C6E4E;
+  --p-text: var(--ink-2);
 }
-.plan-hot .plan-name{ background: rgba(255, 255, 255, .22); color: #fff; }
-.plan-hot .plan-price b{ color: #fff; }
-.plan-hot .plan-price span{ color: rgba(255, 255, 255, .78); }
-.plan-hot .plan-cta{ background: #fff; color: var(--ink); }
-.plan-hot .plan-cta span i{ color: var(--g-700); opacity: 1; }
-.plan-hot .plan-cta .btn-arrow{ background: var(--g-700); color: #fff; }
-.plan-hot .plan-list{ background: rgba(0, 40, 26, .22); }
-.plan-hot .plan-who{ color: #fff; }
-.plan-hot .plan-list li{ color: rgba(255, 255, 255, .9); }
-.plan-hot .plan-list li svg{ color: #fff; }
 
-/* третий тариф: розовый бейдж, корона и оранжевая кнопка */
-.plan-top .plan-name{ white-space: nowrap; }
-.plan-top-tone{}
-.plan-top .plan-name{ background: #FDE9E6; color: #D2543F; }
-.plan-top .plan-price b{ color: #E8512A; }
-.plan-top .plan-cta{ background: linear-gradient(95deg, #F0501F, #F8B133); }
-.plan-top .plan-cta .btn-arrow{ background: #fff; color: #E8512A; }
-.plan-top .plan-list{ background: #FFF4F1; }
-.plan-top .plan-list li svg{ color: #E4553C; }
+/* ---- 2. профессиональный ---- */
+.plan-pro{
+  --p-card: linear-gradient(180deg, #44C59C 0%, #1B9170 38%, #02261A 100%);
+  --p-badge-bg: rgba(255, 255, 255, .22);
+  --p-badge-fg: #fff;
+  --p-trial: #fff;
+  --p-price: #fff;
+  --p-cta-bg: #fff;
+  --p-cta-fg: #06452F;
+  --p-cta-sub: #4FA483;
+  --p-btn-bg: #0B5B41;
+  --p-btn-fg: #fff;
+  --p-panel: rgba(255, 255, 255, .10);
+  --p-title: #fff;
+  --p-star: #fff;
+  --p-text: rgba(255, 255, 255, .82);
+}
+
+/* ---- 3. корпоративный ---- */
+.plan-corp{
+  --p-card: #fff;
+  --p-badge-bg: #FFF0F2;
+  --p-badge-fg: #E8252B;
+  --p-price: #E8252B;
+  --p-cta-bg: linear-gradient(97deg, #E8252B, #FA8D00 68%, #FFC400);
+  --p-cta-fg: #fff;
+  --p-cta-sub: rgba(255, 255, 255, .78);
+  --p-btn-bg: #fff;
+  --p-btn-fg: #FA8D00;
+  --p-panel: #FFF6F7;
+  --p-title: var(--ink);
+  --p-star: #E8252B;
+  --p-text: var(--ink-2);
+}
 
 /* ========================= 08 · наши клиенты ====================== */
 
