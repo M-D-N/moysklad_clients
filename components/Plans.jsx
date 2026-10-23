@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Logo, { ArrowUpRight, TagIcon, StarIcon, CrownIcon, GiftIcon } from "./Logo";
+import { ArrowUpRight, TagIcon, StarIcon, CrownIcon, GiftIcon } from "./Logo";
 import { SecHead } from "./Sections";
 import { useI18n } from "@/lib/i18n";
 
@@ -113,11 +113,12 @@ export function Clients({ logos = [] }) {
         <SecHead badge={s.badge} icon={<StarIcon />} num={s.num} />
 
         <div className="clients-head">
-          <h2 className="sec-title">
-            {s.ha}
+          {/* в макете заголовок в две строки, справа — только знак без надписи */}
+          <h2 className="sec-title clients-h2">
+            <span>{s.ha}</span>
             <span className="hl">{s.hb}</span>
           </h2>
-          <Logo className="clients-mark" />
+          <img className="clients-mark" src="/img/logo-mark.webp" alt="" aria-hidden="true" />
         </div>
 
         <div className="clients-grid">

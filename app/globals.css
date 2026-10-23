@@ -1213,21 +1213,57 @@ p{ margin: 0; }
 
 /* ========================= 08 · наши клиенты ====================== */
 
-.clients-head{ display: flex; align-items: center; justify-content: space-between; gap: 30px; }
-.clients-mark{ width: auto; height: 68px; opacity: .95; }
+/* В этом блоке бейдж и номер идут без плашек — просто зелёный текст. */
+.clients .badge{
+  height: auto;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--g-700);
+  font-size: 11.5px;
+  letter-spacing: .06em;
+  gap: 7px;
+}
+.clients .badge svg{ width: 16px; height: 16px; }
+.clients .sec-num{
+  width: auto;
+  height: auto;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--g-700);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.clients-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 2px;
+}
+.clients-h2{ font-size: 44px; line-height: 1.12; }
+.clients-h2 span{ display: block; }
+.clients-mark{ width: auto; height: 68px; flex: 0 0 auto; }
+
+/* логотипы: белые плитки 151x132 в восемь колонок во всю ширину контейнера */
 .clients-grid{
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
-  gap: 28px 20px;
-  margin-top: 64px;
+  grid-auto-rows: 132px;
+  gap: 18px 14px;
+  margin-top: 54px;
 }
 .client{
   display: grid;
   place-items: center;
-  height: 96px;
+  border-radius: 14px;
+  background: var(--surface);
 }
 .client span{
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: .02em;
   color: var(--g-800);
