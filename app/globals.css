@@ -1274,17 +1274,16 @@ p{ margin: 0; }
 
 /* Полоса-карточка во всю ширину со скруглением 23; контент — по контейнеру.
    Замеры с фрейма 42 (1440x904). */
-.lead-band{ padding: 0; }
 .lead-card{
   position: relative;
   overflow: hidden;
-  padding: 110px 0 108px;
-  border-radius: 23px;
+  padding: 70px 56px 68px;
+  border-radius: 32px;
   background: var(--dark) url("/img/cta2-bg.webp") center / cover no-repeat;
   color: #fff;
 }
-.lead-in{ position: relative; z-index: 2; }
-.lead-in .sec-head{ position: relative; z-index: 3; }   /* номер поверх телефонов */
+.lead-in > *{ position: relative; z-index: 2; }
+.lead-in .sec-head{ z-index: 3; }        /* номер поверх телефонов */
 .lead-copy{ max-width: 780px; }
 .lead-copy .sec-head{ max-width: none; }
 .lead-h2{ margin-top: 48px; font-size: 44px; line-height: 1.2; }

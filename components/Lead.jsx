@@ -48,8 +48,8 @@ export function Lead() {
 
   return (
     <section className="band lead-band" id="lead">
-      <div className="lead-card">
-        <div className="shell lead-in">
+      <div className="shell">
+        <div className="lead-card lead-in">
           {/* шапка на всю ширину контейнера: номер — у правого края */}
           <div className="sec-head">
             <span className="badge badge-dark">
