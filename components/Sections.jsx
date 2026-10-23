@@ -294,12 +294,15 @@ export function Who() {
   );
 
   return (
-    <section className="band dark-band who" id="who">
-      <div className="shell">
-        <SecHead badge={s.badge} icon={<UsersIcon />} num={s.num} dark />
+    <section className="band who" id="who">
+      {/* ступенчатая тёмная фигура позади карточек — низ секции */}
+      <span className="who-bg" aria-hidden="true" />
 
-        <h2 className="sec-title sec-title-dark">
-          {s.ha}
+      <div className="shell">
+        <SecHead badge={s.badge} icon={<UsersIcon />} num={s.num} />
+
+        <h2 className="sec-title who-h2">
+          <span>{s.ha}</span>
           <span className="hl">{s.hb}</span>
         </h2>
 

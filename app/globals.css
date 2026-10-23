@@ -960,28 +960,72 @@ p{ margin: 0; }
 
 /* ======================= 06 · кому подойдёт ======================= */
 
+/* Секция светлая; тёмная «ступенчатая» фигура закрывает её низ.
+   Размеры сняты с макета (кадр 1440): верх фигуры на y=400 от бейджа,
+   плечи на y=600, срезы по 45° до края на y=672. */
 .who{
-  padding-bottom: 0;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 106px;
+  background: var(--page);
+}
+.who-bg{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 576px;
   background:
-    url("/img/bg-arrow.svg") center 58% / 115% auto no-repeat,
-    var(--dark) url("/img/cta1-bg.webp") center / cover no-repeat;
+    radial-gradient(46% 60% at 50% 16%, rgba(0, 0, 0, .55), transparent 72%),
+    linear-gradient(180deg, #00190F, #053F2B);
+  clip-path: polygon(
+    25.42% 0,     21.67% 54px,
+    21.67% 200px, 5% 200px,
+    0 272px,      0 100%,
+    100% 100%,    100% 272px,
+    95% 200px,    78.33% 200px,
+    78.33% 54px,  74.58% 0
+  );
 }
+.who .shell{ position: relative; z-index: 1; }
+
+.who-h2{ margin-top: 40px; font-size: 44px; line-height: 1.12; }
+.who-h2 span{ display: block; }
+
 .who-grid{
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 20px;
-  margin-top: 56px;
+  grid-template-columns: 349px minmax(0, 1fr) 349px;
+  align-items: start;
+  margin-top: 72px;
 }
-.who-col{ display: flex; flex-direction: column; gap: 52px; }
-.who-col > :nth-child(2){ margin-left: -46px; }
-.who-col-r > :nth-child(2){ margin-left: 0; margin-right: -46px; }
-.who-card{ padding: 24px 26px; border-radius: 20px; }
-.who-icon{ width: 56px; height: 56px; margin-bottom: 16px; }
-.who-card h3{ color: var(--g-700); font-size: 17px; margin-bottom: 10px; }
-.who-card p{ font-size: 13px; color: var(--ink-3); line-height: 1.6; }
-.who-art{ align-self: end; }
-.who-art img{ width: 100%; }
+.who-col{ display: flex; flex-direction: column; gap: 18px; }
+/* крайние карточки сдвинуты внутрь, средняя стоит по краю контейнера */
+.who-col > :nth-child(odd){ transform: translateX(42px); }
+.who-col-r > :nth-child(odd){ transform: translateX(-42px); }
+
+.who-card{
+  min-height: 199px;
+  padding: 26px;
+  border-radius: 20px;
+  background: #fff;
+}
+.who-icon{ width: 45px; height: 45px; margin-bottom: 20px; }
+.who-card h3{ color: var(--g-700); font-size: 15px; margin-bottom: 11px; }
+.who-card p{ font-size: 11px; color: var(--ink-3); line-height: 1.5; }
+
+/* телефон: рисунок 427 шириной (у файла по краям прозрачные поля).
+   Он выходит за низ секции, поэтому высоту сетки не задаёт. */
+.who-art{ grid-column: 2; position: relative; height: 0; }
+.who-art img{
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  translate: -50% 0;
+  display: block;
+  width: 457px;
+  max-width: 100%;
+}
 
 /* =========================== 07 · тарифы ========================== */
 
