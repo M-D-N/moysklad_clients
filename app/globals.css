@@ -1345,6 +1345,9 @@ p{ margin: 0; }
 
 /* ============================= 10 · FAQ =========================== */
 
+.faq-h2 span{ display: block; }
+
+
 .faq-grid{
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -184,8 +184,9 @@ export function Faq() {
           <span className="sec-num">{s.num}</span>
         </div>
 
-        <h2 className="sec-title">
-          {s.ha}
+        {/* в макете заголовок в две строки */}
+        <h2 className="sec-title faq-h2">
+          <span>{s.ha}</span>
           <span className="hl">{s.hb}</span>
         </h2>
 
