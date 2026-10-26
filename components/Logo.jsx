@@ -1,37 +1,16 @@
-// Знак Teledukon: сумка-покупка с бумажным самолётиком внутри.
-// Это перерисовка по макету — когда дизайнер отдаст исходный SVG, достаточно
-// заменить содержимое <svg> ниже: классы и размеры снаружи не изменятся.
+// Логотип и мелкая иконография.
+// Логотип — исходный SVG дизайнера: светлая версия для тёмных фонов,
+// обычная — для белой шапки.
 
-export default function Logo({ className = "brand-mark", light = false }) {
-  const id = light ? "tdg-light" : "tdg";
+export default function Logo({ light = false, className = "brand-logo" }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
-      <defs>
-        <linearGradient id={id} x1="8" y1="58" x2="56" y2="8" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor={light ? "#1FA97B" : "#17A074"} />
-          <stop offset="1" stopColor={light ? "#7FE9C6" : "#53D7A6"} />
-        </linearGradient>
-      </defs>
-
-      {/* ручка сумки */}
-      <path
-        d="M22 22v-3a10 10 0 0 1 20 0v3"
-        fill="none"
-        stroke={`url(#${id})`}
-        strokeWidth="5"
-        strokeLinecap="round"
-      />
-      {/* корпус сумки */}
-      <path
-        d="M12 26a6 6 0 0 1 6-6h28a6 6 0 0 1 6 6v20a12 12 0 0 1-12 12H24a12 12 0 0 1-12-12V26Z"
-        fill={`url(#${id})`}
-      />
-      {/* самолётик */}
-      <path
-        d="M45 27 19 41.5l8.2 2.4 2.6 8.1 4.1-6.6 7.3 4.6L45 27Zm-4.9 5.3-11.4 9.9 1.3 4.1 10.1-14Z"
-        fill="#fff"
-      />
-    </svg>
+    <img
+      className={className}
+      src={light ? "/img/logo-footer.svg" : "/img/logo-header.svg"}
+      alt="Teledukon"
+      width={162}
+      height={48}
+    />
   );
 }
 
@@ -73,6 +52,30 @@ export function Caret() {
   );
 }
 
+export function ArrowLeft() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M10 3 5 8l5 5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function ArrowRight() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function Plus() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M8 3.5v9M3.5 8h9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 /** Флажок в переключателе языка. */
 export function Flag({ lang }) {
   if (lang === "uz") {
@@ -95,7 +98,18 @@ export function Flag({ lang }) {
   );
 }
 
-/* ---------------------- иконки бейджей и подвала ---------------------- */
+/* ------------------------- иконки бейджей секций ------------------------- */
+
+export function GearIcon() {
+  // заливная шестерёнка из макета: шесть лепестков и круглое отверстие.
+  // Подпути намотаны в одну сторону — заливка объединяет их, отверстие
+  // намотано обратно, поэтому вырезается (fill-rule nonzero).
+  return (
+    <svg viewBox="0 0 36 36" fill="currentColor" aria-hidden="true">
+      <path d="M14.57 0.33A18 18 0 0 1 21.43 0.33Q22.34 3.36 22.87 5.95A13 13 0 0 1 26 7.76Q28.51 6.93 31.58 6.19A18 18 0 0 1 35.02 12.14Q32.85 14.44 30.87 16.19A13 13 0 0 1 30.87 19.81Q32.85 21.56 35.02 23.86A18 18 0 0 1 31.58 29.81Q28.51 29.07 26 28.24A13 13 0 0 1 22.87 30.05Q22.34 32.64 21.43 35.67A18 18 0 0 1 14.57 35.67Q13.66 32.64 13.13 30.05A13 13 0 0 1 10 28.24Q7.49 29.07 4.42 29.81A18 18 0 0 1 0.98 23.86Q3.15 21.56 5.13 19.81A13 13 0 0 1 5.13 16.19Q3.15 14.44 0.98 12.14A18 18 0 0 1 4.42 6.19Q7.49 6.93 10 7.76A13 13 0 0 1 13.13 5.95Q13.66 3.36 14.57 0.33ZM12 18a6 6 0 1 0 12 0a6 6 0 1 0-12 0" />
+    </svg>
+  );
+}
 
 export function SparkIcon() {
   return (
@@ -106,18 +120,171 @@ export function SparkIcon() {
 }
 
 export function ShopIcon() {
+  // торговый ларёк из макета: навес с тремя зубцами, фестончатый низ навеса
+  // и прилавок под ним; заливка — вертикальный градиент
+  return (
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="shop-g" x1="20" y1="0" x2="20" y2="40" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#17735A" />
+          <stop offset="1" stopColor="#63B69C" />
+        </linearGradient>
+      </defs>
+      <path
+        fill="url(#shop-g)"
+        d="M3.4 1.1A1.1 1.1 0 0 1 4.5 0h6A1.1 1.1 0 0 1 11.6 1.1V9.8h2.9V1.1A1.1 1.1 0 0 1 15.6 0h8.8a1.1 1.1 0 0 1 1.1 1.1V9.8h2.9V1.1A1.1 1.1 0 0 1 29.5 0h6a1.1 1.1 0 0 1 1.1 1.1C38.3 5 40 9 40 13.6v8a6.67 3.2 0 0 1-13.33 0 6.67 3.2 0 0 1-13.34 0 6.67 3.2 0 0 1-13.33 0v-8C0 9 1.7 5 3.4 1.1Z"
+      />
+      <path
+        fill="url(#shop-g)"
+        d="M1 29a1.6 1.6 0 0 1 1.6-1.6h34.8A1.6 1.6 0 0 1 39 29v5.4a4.4 4.4 0 0 1-4.4 4.4H5.4A4.4 4.4 0 0 1 1 34.4V29Z"
+      />
+    </svg>
+  );
+}
+
+export function BoltIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M9 1.5 3.5 9h3.8l-.6 5.5L13 7H9.2l-.2-5.5Z" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function UsersIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="6.2" cy="5.4" r="2.4" stroke="currentColor" strokeWidth="1.3" />
+      <path d="M1.9 13.2c.3-2.2 2.1-3.6 4.3-3.6s4 1.4 4.3 3.6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d="M11 3.3a2.4 2.4 0 0 1 0 4.5M12.3 9.9c1.1.6 1.8 1.7 2 3.1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function TagIcon() {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
       <path
-        d="M2.5 5.5h11l-.8 7a1.6 1.6 0 0 1-1.6 1.4H4.9a1.6 1.6 0 0 1-1.6-1.4l-.8-7Z"
+        d="M8.2 1.9H14v5.8l-6.4 6.4a1.3 1.3 0 0 1-1.8 0L1.9 9.9a1.3 1.3 0 0 1 0-1.8l6.3-6.2Z"
         stroke="currentColor"
         strokeWidth="1.3"
         strokeLinejoin="round"
       />
-      <path d="M5.8 5.5V4.3a2.2 2.2 0 0 1 4.4 0v1.2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <circle cx="11.1" cy="4.9" r="1.1" fill="currentColor" />
     </svg>
   );
 }
+
+export function StarIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M8 1.8 9.9 5.9l4.3.5-3.2 3 .9 4.3L8 11.6l-3.9 2.1.9-4.3-3.2-3 4.3-.5L8 1.8Z" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function DocIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M4 1.8h5l3 3v9.4H4V1.8Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+      <path d="M9 1.8v3.2h3M6 8.6h4M6 11h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/* ------------------------------ иконки блока 04 --------------------------- */
+
+export function CatalogArt() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <rect x="4" y="4" width="56" height="56" rx="18" fill="#E7F7F0" />
+      <rect x="16" y="18" width="18" height="12" rx="3" fill="#34C495" />
+      <rect x="16" y="34" width="18" height="12" rx="3" fill="#9FE4CA" />
+      <rect x="38" y="18" width="10" height="28" rx="3" fill="#12906A" />
+    </svg>
+  );
+}
+
+export function PriceArt() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <rect x="4" y="4" width="56" height="56" rx="18" fill="#E7F7F0" />
+      <circle cx="32" cy="32" r="14" fill="#34C495" />
+      <path d="M26 38 38 26" stroke="#fff" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="27" cy="27" r="2.6" fill="#fff" />
+      <circle cx="37" cy="37" r="2.6" fill="#fff" />
+    </svg>
+  );
+}
+
+export function FinanceArt() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <rect x="4" y="4" width="56" height="56" rx="18" fill="#E7F7F0" />
+      <rect x="17" y="32" width="8" height="15" rx="2.5" fill="#9FE4CA" />
+      <rect x="28" y="24" width="8" height="23" rx="2.5" fill="#34C495" />
+      <rect x="39" y="17" width="8" height="30" rx="2.5" fill="#12906A" />
+    </svg>
+  );
+}
+
+export function BellArt() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <rect x="4" y="4" width="56" height="56" rx="18" fill="#E7F7F0" />
+      <path d="M32 16a10 10 0 0 1 10 10v7l3 5H19l3-5v-7a10 10 0 0 1 10-10Z" fill="#34C495" />
+      <path d="M28 41a4 4 0 0 0 8 0" stroke="#12906A" strokeWidth="2.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/* ------------------------------ картинки блока 05 ------------------------- */
+
+export function LaunchReadyArt() {
+  return (
+    <svg viewBox="0 0 120 80" fill="none" aria-hidden="true">
+      <rect x="4" y="10" width="62" height="52" rx="8" fill="#fff" stroke="#DCE9E4" strokeWidth="1.5" />
+      <rect x="4" y="10" width="62" height="10" rx="8" fill="#E7F7F0" />
+      <rect x="12" y="26" width="20" height="5" rx="2.5" fill="#9FE4CA" />
+      <rect x="12" y="35" width="34" height="5" rx="2.5" fill="#E7F7F0" />
+      <rect x="12" y="44" width="28" height="5" rx="2.5" fill="#E7F7F0" />
+      <circle cx="86" cy="24" r="10" fill="#34C495" />
+      <circle cx="86" cy="44" r="10" fill="#12906A" />
+      <circle cx="86" cy="64" r="10" fill="#9FE4CA" />
+      <path d="M70 28h6M70 44h6M70 60h6" stroke="#9FE4CA" strokeWidth="2" strokeDasharray="3 3" />
+      <path d="M100 44h12l-6 6M106 38l6 6" stroke="#1FA97B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function LaunchNewArt() {
+  return (
+    <svg viewBox="0 0 120 80" fill="none" aria-hidden="true">
+      <circle cx="60" cy="42" r="26" fill="#E7F7F0" />
+      <rect x="40" y="34" width="40" height="22" rx="6" fill="#fff" stroke="#DCE9E4" strokeWidth="1.5" />
+      <path d="M48 44h24" stroke="#34C495" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="96" cy="26" r="11" fill="#34C495" />
+      <path d="M96 21v10M91 26h10" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" />
+      <path d="M28 20l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" fill="#9FE4CA" />
+    </svg>
+  );
+}
+
+export function LaunchOtherArt() {
+  return (
+    <svg viewBox="0 0 120 80" fill="none" aria-hidden="true">
+      <rect x="6" y="14" width="34" height="14" rx="5" fill="#fff" stroke="#DCE9E4" strokeWidth="1.5" />
+      <rect x="6" y="33" width="34" height="14" rx="5" fill="#fff" stroke="#DCE9E4" strokeWidth="1.5" />
+      <rect x="6" y="52" width="34" height="14" rx="5" fill="#fff" stroke="#DCE9E4" strokeWidth="1.5" />
+      <circle cx="68" cy="40" r="12" fill="#34C495" />
+      <path d="M64 40a4 4 0 0 1 4-4h2M72 40a4 4 0 0 1-4 4h-2" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M42 21h12M42 40h12M42 59h12" stroke="#9FE4CA" strokeWidth="2" strokeDasharray="3 3" />
+      <rect x="88" y="26" width="26" height="26" rx="8" fill="#12906A" />
+      <path d="M108 33 94 41l4.4 1.3 1.4 4.3 2.2-3.5 3.9 2.4L108 33Z" fill="#fff" />
+    </svg>
+  );
+}
+
+/* --------------------------------- соцсети -------------------------------- */
 
 export function TelegramIcon() {
   return (
@@ -144,6 +311,24 @@ export function FacebookIcon() {
         d="M9.6 14V8.6h1.8l.3-2.1H9.6V5.1c0-.6.2-1 1-1h1.1V2.2c-.2 0-.9-.1-1.6-.1-1.6 0-2.7 1-2.7 2.8v1.6H5.5v2.1h1.9V14h2.2Z"
         fill="currentColor"
       />
+    </svg>
+  );
+}
+
+export function CrownIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M2 12.4h12l1-7-3.6 2.4L8 3l-3.4 4.8L1 5.4l1 7Z" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function GiftIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <rect x="2" y="6.4" width="12" height="7.6" rx="1.6" fill="currentColor" />
+      <rect x="1.2" y="3.6" width="13.6" height="3.2" rx="1.2" fill="currentColor" />
+      <path d="M8 3.6V14M8 3.6C7.2 1.6 4.4 1.6 4.4 3.2c0 .9 1.4 1 3.6.4Zm0 0c.8-2 3.6-2 3.6-.4 0 .9-1.4 1-3.6.4Z" stroke="#fff" strokeWidth="1.1" />
     </svg>
   );
 }
