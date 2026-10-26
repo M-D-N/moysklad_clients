@@ -553,6 +553,8 @@ p{ margin: 0; }
   grid-template-columns: minmax(0, 1.4fr) minmax(0, .8fr) minmax(0, 1fr);
   gap: 40px;
 }
+/* в подвале лого крупнее, чем в шапке */
+.footer .brand-logo{ height: 48px; }
 .footer .brand-name{ color: #fff; }
 .footer .brand-name i{ color: var(--g-300); }
 .footer .brand-by{ color: #6E8C82; }
