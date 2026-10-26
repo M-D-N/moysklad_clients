@@ -916,7 +916,7 @@ p{ margin: 0; }
   border: 1px solid var(--line);
   margin-left: auto;
 }
-.feat-dots i{ width: 14px; height: 14px; border-radius: 50%; background: var(--g-50); }
+.feat-dots i{ width: 14px; height: 14px; border-radius: 50%; background: var(--g-100); }
 .feat-dots i.on{ background: var(--g-700); }
 
 /* ======================= 05 · быстрый запуск ====================== */
@@ -1492,7 +1492,6 @@ p{ margin: 0; }
 /* иконки и картинки внутри карточек слегка подрастают */
 .who-icon,
 .step-img img,
-.feat-art,
 .launch-art img,
 .plan-arrow,
 .btn-arrow,
@@ -1500,7 +1499,6 @@ p{ margin: 0; }
 .client span{ transition: transform .25s ease; }
 .who-card:hover .who-icon,
 .step-card:hover .step-img img,
-.feat-row:hover .feat-art,
 .launch-card:hover .launch-art img{ transform: scale(1.06); }
 .btn:hover .btn-arrow,
 .plan-cta:hover .plan-arrow,
@@ -1508,10 +1506,6 @@ p{ margin: 0; }
 .launch-cta:hover .btn-arrow{ transform: translate(2px, -2px); }
 .badge:hover svg{ transform: rotate(-12deg) scale(1.12); }
 .client:hover span{ transform: scale(1.06); }
-
-/* строки «Возможностей» подсвечиваются целиком */
-.feat-row{ transition: background .25s ease; border-radius: 16px; }
-.feat-row:hover{ background: var(--g-50); }
 
 /* 3D-иконка в «Больше, чем просто бот» тихо покачивается */
 @keyframes show-float{
@@ -1536,12 +1530,10 @@ p{ margin: 0; }
   .plan,
   .who-icon,
   .step-img img,
-  .feat-art,
   .launch-art img,
   .plan-arrow,
   .btn-arrow,
   .badge svg,
-  .feat-row,
   .manage-nav button{ transition: none; }
   .show-icon{ animation: none; }
 }
