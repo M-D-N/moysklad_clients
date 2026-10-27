@@ -227,6 +227,8 @@ p{ margin: 0; }
   padding: 24px 0;
 }
 .nav-in{
+  position: relative;
+  z-index: 2;        /* шапка поверх подложки меню, иначе крестик не нажать */
   display: flex;
   align-items: center;
   gap: 12px;                                /* в макете пилюля и кнопка почти впритык */
@@ -340,13 +342,23 @@ p{ margin: 0; }
   display: none;
   margin-top: 10px;
 }
-.mobile-menu.open{ display: block; }
-/* затемняем страницу под меню, иначе контент просвечивает и мешает */
-.mobile-menu.open::before{
-  content: "";
+/* меню — накладка: в потоке оно раздвигало шапку и сдвигало всю страницу */
+.mobile-menu.open{
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 1;
+}
+/* кликабельная подложка: гасит страницу и закрывает меню по тапу */
+.mm-back{
   position: fixed;
   inset: 0;
+  border: 0;
+  padding: 0;
   background: rgba(2, 24, 16, .45);
+  cursor: pointer;
 }
 .mm-in{
   position: relative;
@@ -1644,4 +1656,11 @@ p{ margin: 0; }
      в макете картинка доходит до самого низа секции */
   .dark-band{ padding-bottom: 0; }
   .who{ padding-bottom: 0; }
+}
+
+/* ------- правки второй волны по мобильным скринам ------- */
+
+@media (max-width: 620px){
+  /* колонки «Кому подойдёт» стыковались без зазора: 3-я и 4-я карточки слипались */
+  .who-grid{ gap: 18px; }
 }
