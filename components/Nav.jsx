@@ -22,6 +22,14 @@ export default function Nav() {
   const [stuck, setStuck] = useState(false);
   const links = navLinks(t);
 
+  // меню закрывается по Esc
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   // пока открыто меню, страница под ним не должна прокручиваться
   useEffect(() => {
     if (!open) return;
@@ -96,6 +104,14 @@ export default function Nav() {
       </div>
 
       <div className={`mobile-menu${open ? " open" : ""}`}>
+        {/* подложка кликабельная: по ней меню закрывается */}
+        <button
+          type="button"
+          className="mm-back"
+          aria-label={t.nav.close}
+          tabIndex={open ? 0 : -1}
+          onClick={() => setOpen(false)}
+        />
         <div className="shell mm-in">
           {links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
