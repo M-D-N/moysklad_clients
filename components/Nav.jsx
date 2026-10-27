@@ -22,6 +22,17 @@ export default function Nav() {
   const [stuck, setStuck] = useState(false);
   const links = navLinks(t);
 
+  // пока открыто меню, страница под ним не должна прокручиваться
+  useEffect(() => {
+    if (!open) return;
+    // overflow:hidden на html ломает sticky у шапки, поэтому только body
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   // пока страница не прокручена, шапка лежит на герое и тень не нужна
   useEffect(() => {
     const onScroll = () => setStuck(window.scrollY > 8);
