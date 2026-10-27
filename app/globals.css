@@ -1542,3 +1542,79 @@ p{ margin: 0; }
   .manage-nav button{ transition: none; }
   .show-icon{ animation: none; }
 }
+
+/* ===================== МОБИЛЬНАЯ ВЁРСТКА ======================== */
+/* Правки поверх старых медиазапросов: редизайн принёс фиксированные
+   размеры (карточки 349, сетки в 3 и 8 колонок, заголовки 44), которые
+   в телефон не помещались. */
+
+@media (max-width: 900px){
+  /* заголовки секций вместо жёстких 44px */
+  .show-h2,
+  .who-h2,
+  .plans-h2,
+  .clients-h2,
+  .lead-h2,
+  .faq-h2{ font-size: clamp(24px, 6.4vw, 34px); line-height: 1.22; }
+
+  /* «кому подойдёт»: карточки разъезжались за оба края экрана */
+  .who{ padding-top: 100px; }
+  .who-col > :nth-child(odd),
+  .who-col-r > :nth-child(odd){ transform: none; }
+  .who-col > :nth-child(odd):hover,
+  .who-col-r > :nth-child(odd):hover{ transform: translateY(-4px); }
+  /* купол узкий на телефоне — растягиваем, иначе тёмная полоска у низа */
+  .who-dome{ width: 200%; max-width: none; left: -50%; }
+  /* телефон возвращаем в поток: на десктопе он вынут из него абсолютом */
+  .who-art{ position: static; height: auto; margin: 6px 0 0; }
+  .who-art img{
+    position: static;
+    translate: none;
+    width: min(300px, 100%);
+    margin-inline: auto;
+  }
+
+  /* тариф был шире экрана: 1fr не ограничивает содержимое */
+  .plans-grid{ grid-template-columns: minmax(0, 1fr); }
+
+  /* знак уезжает под заголовок, а не жмёт его сбоку */
+  .clients-head{ flex-direction: column; align-items: flex-start; gap: 18px; }
+  .clients-mark{ height: 52px; }
+
+  /* телефон прячется в шапке, но в выпадающем меню он нужен */
+  .mm-row .nav-phone{ display: inline-flex; }
+  .mm-row .nav-phone .pn{ display: inline; }
+}
+
+@media (max-width: 620px){
+  /* герой: десктопный отступ сверху оставлял пустую зелёную простыню */
+  .hero{ padding-top: 150px; min-height: 0; }
+
+  /* карточка этапа: картинка уже, у текста нормальные поля */
+  .step-card{ grid-template-columns: 104px minmax(0, 1fr); gap: 0; min-height: 0; }
+  .step-copy{ padding: 20px 18px; }
+  .step-n{ margin-bottom: 18px; }
+
+  /* тарифы */
+  .plan{ padding: 20px; }
+  .plan-price b{ font-size: 32px; }
+  .plan-cta{ height: 66px; padding-left: 18px; }
+  .plan-arrow{ width: 50px; height: 50px; flex: 0 0 50px; border-radius: 14px; }
+  .plan-list{ padding: 20px; }
+
+  /* клиенты */
+  .clients-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 104px; gap: 12px 10px; }
+  .client span{ font-size: 16px; }
+
+  /* заявка */
+  .lf-field{ padding: 16px 18px; }
+  .lf-field textarea{ height: 78px; }
+  .lf-submit{ height: 64px; padding-left: 22px; }
+  .lf-submit .btn-arrow{ width: 46px; height: 46px; flex: 0 0 46px; border-radius: 12px; }
+}
+
+@media (max-width: 360px){
+  .clients-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .step-card{ grid-template-columns: 88px minmax(0, 1fr); }
+  .step-copy{ padding: 18px 14px; }
+}
