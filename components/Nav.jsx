@@ -70,7 +70,7 @@ export default function Nav() {
 
           <button type="button" className="nav-lang" onClick={toggleLang}>
             <Flag lang={lang} />
-            {t.nav.langName}
+            <span className="lang-name">{t.nav.langName}</span>
             <Caret />
           </button>
 

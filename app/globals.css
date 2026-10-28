@@ -1666,3 +1666,29 @@ p{ margin: 0; }
   /* колонки «Кому подойдёт» стыковались без зазора: 3-я и 4-я карточки слипались */
   .who-grid{ gap: 18px; }
 }
+
+/* ---------- шапка на средних экранах ----------
+   Между 960 и 1340 содержимое пилюли перестаёт помещаться: номер
+   телефона вылезал за её край и уходил под кнопку. Поджимаем поэтапно. */
+
+@media (max-width: 1400px){
+  .nav-bar{ gap: 14px; padding: 0 18px 0 14px; }
+  .nav-links{ gap: 12px; font-size: 13.5px; }
+  .nav-phone{ font-size: 13.5px; }
+  .nav-cta{ min-width: 0; padding: 0 20px; font-size: 13.5px; }
+}
+
+@media (max-width: 1300px){
+  .nav-bar{ gap: 11px; padding: 0 14px 0 12px; }
+  .nav-links{ gap: 10px; font-size: 13px; }
+  .nav-phone{ font-size: 13px; }
+  .nav-lang .lang-name{ display: none; }   /* остаются флаг и стрелка */
+  .nav-lang{ gap: 5px; padding: 0 4px; }
+  .brand-logo{ height: 28px; }
+  .nav-cta{ padding: 0 16px; font-size: 13px; }
+}
+
+@media (max-width: 1120px){
+  /* номер убираем совсем: он есть в подвале и в выпадающем меню */
+  .nav-phone{ display: none; }
+}
