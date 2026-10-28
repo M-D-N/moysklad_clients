@@ -1270,8 +1270,8 @@ p{ margin: 0; }
 /* логотипы: белые плитки 151x132 в восемь колонок во всю ширину контейнера */
 .clients-grid{
   display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  grid-auto-rows: 132px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 168px;
   gap: 18px 14px;
   margin-top: 54px;
 }
@@ -1287,7 +1287,8 @@ p{ margin: 0; }
   letter-spacing: .02em;
   color: var(--g-800);
 }
-.client img{ max-height: 54px; width: auto; }
+/* квадратные знаки иначе смотрятся мельче широких — даём им высоту */
+.client img{ max-height: 84px; max-width: 72%; width: auto; object-fit: contain; }
 
 /* =========================== 09 · заявка ========================== */
 
@@ -1427,7 +1428,7 @@ p{ margin: 0; }
   .who-grid{ grid-template-columns: 1fr 1fr; }
   .who-col > *{ margin: 0 !important; }
   .who-art{ grid-column: 1 / -1; order: 3; max-width: 420px; margin-inline: auto; }
-  .clients-grid{ grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .clients-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 1000px){
@@ -1448,7 +1449,7 @@ p{ margin: 0; }
   .faq-grid{ grid-template-columns: 1fr; }
   .manage-art::before{ width: 320px; height: 320px; }
   .manage-art img{ max-height: 420px; }
-  .clients-grid{ grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 16px; }
+  .clients-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 150px; gap: 16px 14px; }
   .clients-mark{ height: 48px; }
 }
 
@@ -1623,8 +1624,9 @@ p{ margin: 0; }
   .plan-list{ padding: 20px; }
 
   /* клиенты */
-  .clients-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 104px; gap: 12px 10px; }
+  .clients-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 124px; gap: 12px 10px; }
   .client span{ font-size: 16px; }
+  .client img{ max-height: 58px; max-width: 78%; }
 
   /* заявка */
   .lf-field{ padding: 16px 18px; }
@@ -1634,7 +1636,7 @@ p{ margin: 0; }
 }
 
 @media (max-width: 360px){
-  .clients-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .clients-grid{ grid-template-columns: minmax(0, 1fr); grid-auto-rows: 110px; }
   .step-card{ grid-template-columns: 88px minmax(0, 1fr); }
   .step-copy{ padding: 18px 14px; }
 }
